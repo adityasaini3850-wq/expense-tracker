@@ -1,0 +1,43 @@
+# Built binaries and outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+build/
+app/build/
+.build-outputs/
+
+# Gradle files and caches
+.gradle/
+build/
+*/build/
+gradle-app.setting
+.gradletasknamecache
+
+# Local configuration and credentials
+local.properties
+.env
+debug.keystore
+debug.keystore.base64
+*.jks
+*.keystore
+
+# Android Studio / IntelliJ IDEA
+.idea/
+*.iml
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+output.json
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
