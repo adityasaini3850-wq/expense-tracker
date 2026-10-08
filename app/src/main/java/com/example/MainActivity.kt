@@ -1,461 +1,686 @@
 package com.example
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.animation.*
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Image
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.automirrored.filled.Send
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.AccountBalanceWallet
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Analytics
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material.icons.filled.Assessment
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.ContentCopy
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Fastfood
+import androidx.compose.material.icons.filled.FileDownload
+import androidx.compose.material.icons.filled.Flight
+import androidx.compose.material.icons.filled.Group
+import androidx.compose.material.icons.filled.LocalHospital
+import androidx.compose.material.icons.filled.Movie
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Payment
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.PhoneAndroid
+import androidx.compose.material.icons.filled.PieChart
+import androidx.compose.material.icons.filled.Receipt
+import androidx.compose.material.icons.filled.School
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.ShoppingBag
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.Speed
+import androidx.compose.material.icons.filled.TableChart
+import androidx.compose.material.icons.filled.TrendingUp
+import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Badge
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.data.*
+import com.example.data.AppDatabase
+import com.example.data.Debt
+import com.example.data.Expense
+import com.example.data.ExpenseRepository
+import com.example.data.Folder
+import com.example.ui.BudgetHealth
+import com.example.ui.CategoryBudgetProgress
 import com.example.ui.ExpenseViewModel
-import com.example.ui.Transaction
-import com.example.ui.theme.MyApplicationTheme
+import com.example.ui.OverallBudgetSummary
+import com.example.ui.UserState
+import com.example.ui.DataAnalystExportDialog
+import com.example.ui.DataAnalystPortfolioDialog
+import com.example.util.CsvExporter
+import com.example.ui.theme.ExpenseTrackerTheme
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.math.abs
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
+    private val viewModel: ExpenseViewModel by viewModels {
+        val db = AppDatabase.getDatabase(applicationContext)
+        val repo = ExpenseRepository(db.expenseDao())
+        ExpenseViewModel.Factory(repo)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        // Initialize local Room DB and Repository
-        val database = AppDatabase.getDatabase(applicationContext)
-        val repository = ExpenseRepository(database.expenseDao())
-        
-        // Instantiate ViewModel
-        val viewModel: ExpenseViewModel by viewModels {
-            ExpenseViewModel.Factory(repository)
-        }
-
         setContent {
-            MyApplicationTheme {
-                MainAppScreen(viewModel)
+            ExpenseTrackerTheme {
+                MainAppScreen(viewModel = viewModel)
             }
         }
     }
+}
+
+enum class ScreenTab(val title: String, val icon: ImageVector) {
+    EXPENSES("Expenses", Icons.Default.Receipt),
+    BUDGETS("Budgets", Icons.Default.PieChart),
+    GROUPS("Groups", Icons.Default.Group),
+    DEBTS("Debts", Icons.Default.Payment),
+    ANALYTICS("Analytics", Icons.Default.Analytics)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainAppScreen(viewModel: ExpenseViewModel) {
-    val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    val snackbarHostState = remember { SnackbarHostState() }
-    
-    // UI State
-    var selectedTab by remember { mutableStateOf(0) } // 0: Personal, 1: Groups, 2: Debts, 3: Reports
-    val personalExpenses by viewModel.personalExpenses.collectAsStateWithLifecycle()
-    val folders by viewModel.allFolders.collectAsStateWithLifecycle()
-    val debts by viewModel.allDebts.collectAsStateWithLifecycle()
+    var currentTab by remember { mutableStateOf(ScreenTab.BUDGETS) }
+    val userState by viewModel.userState.collectAsStateWithLifecycle()
     val selectedFolder by viewModel.selectedFolder.collectAsStateWithLifecycle()
-    val selectedFolderExpenses by viewModel.selectedFolderExpenses.collectAsStateWithLifecycle()
 
-    // Dialog state controllers
-    var showAddPersonalExpenseDialog by remember { mutableStateOf(false) }
-    var showCreateFolderDialog by remember { mutableStateOf(false) }
-    var showJoinFolderDialog by remember { mutableStateOf(false) }
-    var showAddFolderExpenseDialog by remember { mutableStateOf(false) }
-    var showAddDebtDialog by remember { mutableStateOf(false) }
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
 
-    // Listen for simulated multiplayer sync activities and show a Material snackbar!
+    var showOtpDialog by remember { mutableStateOf(false) }
+    var showProfileDialog by remember { mutableStateOf(false) }
+    var showExportDialog by remember { mutableStateOf(false) }
+    var showWorkSampleDialog by remember { mutableStateOf(false) }
+
+    // Dialog state for adding personal expense
+    var showAddExpenseDialog by remember { mutableStateOf(false) }
+    // Dialog state for setting category budget
+    var showSetBudgetDialog by remember { mutableStateOf(false) }
+    var budgetCategoryToEdit by remember { mutableStateOf<String?>(null) }
+    var budgetLimitToEdit by remember { mutableDoubleStateOf(0.0) }
+
     LaunchedEffect(Unit) {
-        viewModel.syncNotification.collectLatest { message ->
-            scope.launch {
-                snackbarHostState.showSnackbar(
-                    message = message,
-                    duration = SnackbarDuration.Short
-                )
-            }
+        viewModel.syncNotification.collectLatest { msg ->
+            snackbarHostState.showSnackbar(msg)
+        }
+    }
+
+    // Handle back button if deep in a group folder
+    if (selectedFolder != null) {
+        BackHandler {
+            viewModel.selectFolder(null)
         }
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        modifier = Modifier.fillMaxSize(),
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        topBar = {
+            TopAppBar(
+                title = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Surface(
+                            shape = CircleShape,
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            modifier = Modifier.size(36.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = Icons.Default.AccountBalanceWallet,
+                                    contentDescription = "App Logo",
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(20.dp)
+                                )
+                            }
+                        }
+                        Column {
+                            Text(
+                                text = "Expense Tracker",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = if (userState.isLoggedIn) "Logged in as ${userState.name}" else "Tap avatar to Login with OTP",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+                },
+                actions = {
+                    // Export CSV for Data Analysis
+                    IconButton(
+                        onClick = { showExportDialog = true },
+                        modifier = Modifier.testTag("top_export_csv_btn")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.FileDownload,
+                            contentDescription = "Export CSV for Data Analysis",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+
+                    // Work Sample / Interview Portfolio (PDF)
+                    IconButton(
+                        onClick = { showWorkSampleDialog = true },
+                        modifier = Modifier.testTag("top_work_sample_pdf_btn")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Assessment,
+                            contentDescription = "Interview Work Sample (PDF)",
+                            tint = MaterialTheme.colorScheme.secondary
+                        )
+                    }
+
+                    // Profile / OTP Login button
+                    IconButton(
+                        onClick = {
+                            if (userState.isLoggedIn) {
+                                showProfileDialog = true
+                            } else {
+                                showOtpDialog = true
+                            }
+                        },
+                        modifier = Modifier.testTag("auth_profile_button")
+                    ) {
+                        Surface(
+                            shape = CircleShape,
+                            color = if (userState.isLoggedIn) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
+                            modifier = Modifier.size(36.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Text(
+                                    text = if (userState.isLoggedIn) userState.userAvatarInitials else "OTP",
+                                    color = if (userState.isLoggedIn) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 12.sp
+                                )
+                            }
+                        }
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.surface
+                )
+            )
+        },
         bottomBar = {
             if (selectedFolder == null) {
                 NavigationBar(
-                    containerColor = Color(0xFFF3EDF7),
-                    modifier = Modifier.testTag("bottom_nav_bar")
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    tonalElevation = 8.dp
                 ) {
-                    NavigationBarItem(
-                        selected = selectedTab == 0,
-                        onClick = { selectedTab = 0 },
-                        label = { Text("Personal", fontWeight = if (selectedTab == 0) FontWeight.Bold else FontWeight.Medium, fontSize = 10.sp) },
-                        icon = { Icon(Icons.Default.Receipt, contentDescription = "Personal Expenses") },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFF1D1B20),
-                            selectedTextColor = Color(0xFF1D1B20),
-                            indicatorColor = Color(0xFFE8DEF8),
-                            unselectedIconColor = Color(0xFF1D1B20).copy(alpha = 0.6f),
-                            unselectedTextColor = Color(0xFF1D1B20).copy(alpha = 0.6f)
-                        ),
-                        modifier = Modifier.testTag("nav_personal")
-                    )
-                    NavigationBarItem(
-                        selected = selectedTab == 1,
-                        onClick = { selectedTab = 1 },
-                        label = { Text("Trip Groups", fontWeight = if (selectedTab == 1) FontWeight.Bold else FontWeight.Medium, fontSize = 10.sp) },
-                        icon = { Icon(Icons.Default.Group, contentDescription = "Group Trip Folders") },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFF1D1B20),
-                            selectedTextColor = Color(0xFF1D1B20),
-                            indicatorColor = Color(0xFFE8DEF8),
-                            unselectedIconColor = Color(0xFF1D1B20).copy(alpha = 0.6f),
-                            unselectedTextColor = Color(0xFF1D1B20).copy(alpha = 0.6f)
-                        ),
-                        modifier = Modifier.testTag("nav_groups")
-                    )
-                    NavigationBarItem(
-                        selected = selectedTab == 2,
-                        onClick = { selectedTab = 2 },
-                        label = { Text("Debt Logs", fontWeight = if (selectedTab == 2) FontWeight.Bold else FontWeight.Medium, fontSize = 10.sp) },
-                        icon = { Icon(Icons.Default.CompareArrows, contentDescription = "Money Lent or Borrowed") },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFF1D1B20),
-                            selectedTextColor = Color(0xFF1D1B20),
-                            indicatorColor = Color(0xFFE8DEF8),
-                            unselectedIconColor = Color(0xFF1D1B20).copy(alpha = 0.6f),
-                            unselectedTextColor = Color(0xFF1D1B20).copy(alpha = 0.6f)
-                        ),
-                        modifier = Modifier.testTag("nav_debts")
-                    )
-                    NavigationBarItem(
-                        selected = selectedTab == 3,
-                        onClick = { selectedTab = 3 },
-                        label = { Text("Reports", fontWeight = if (selectedTab == 3) FontWeight.Bold else FontWeight.Medium, fontSize = 10.sp) },
-                        icon = { Icon(Icons.Default.PieChart, contentDescription = "Monthly Spend Reports") },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFF1D1B20),
-                            selectedTextColor = Color(0xFF1D1B20),
-                            indicatorColor = Color(0xFFE8DEF8),
-                            unselectedIconColor = Color(0xFF1D1B20).copy(alpha = 0.6f),
-                            unselectedTextColor = Color(0xFF1D1B20).copy(alpha = 0.6f)
-                        ),
-                        modifier = Modifier.testTag("nav_reports")
-                    )
+                    ScreenTab.values().forEach { tab ->
+                        val selected = currentTab == tab
+                        NavigationBarItem(
+                            selected = selected,
+                            onClick = { currentTab = tab },
+                            icon = {
+                                Icon(
+                                    imageVector = tab.icon,
+                                    contentDescription = tab.title
+                                )
+                            },
+                            label = {
+                                Text(
+                                    text = tab.title,
+                                    fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal
+                                )
+                            },
+                            modifier = Modifier.testTag("nav_tab_${tab.name.lowercase()}")
+                        )
+                    }
+                }
+            }
+        },
+        floatingActionButton = {
+            if (selectedFolder == null) {
+                when (currentTab) {
+                    ScreenTab.EXPENSES -> {
+                        FloatingActionButton(
+                            onClick = { showAddExpenseDialog = true },
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.testTag("fab_add_expense")
+                        ) {
+                            Icon(Icons.Default.Add, contentDescription = "Add Expense")
+                        }
+                    }
+                    ScreenTab.BUDGETS -> {
+                        FloatingActionButton(
+                            onClick = {
+                                budgetCategoryToEdit = null
+                                budgetLimitToEdit = 100.0
+                                showSetBudgetDialog = true
+                            },
+                            containerColor = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.testTag("fab_set_budget")
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Icon(Icons.Default.Add, contentDescription = "Set Target Budget")
+                                Text("Set Budget", fontWeight = FontWeight.Bold)
+                            }
+                        }
+                    }
+                    else -> {}
                 }
             }
         }
     ) { innerPadding ->
-        Surface(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding),
-            color = Color(0xFFFDF7FF) // Match page body bg-[#fdf7ff]
+                .padding(innerPadding)
         ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                if (selectedFolder == null) {
-                    val subtitle = when (selectedTab) {
-                        0 -> viewModel.getCurrentMonthYear()
-                        1 -> "Collaborative Splits"
-                        2 -> "Lending Manager"
-                        else -> "Analytics Breakdown"
+            if (selectedFolder != null) {
+                FolderDetailScreen(
+                    folder = selectedFolder!!,
+                    viewModel = viewModel,
+                    onBack = { viewModel.selectFolder(null) }
+                )
+            } else {
+                when (currentTab) {
+                    ScreenTab.EXPENSES -> {
+                        PersonalExpensesTab(
+                            viewModel = viewModel,
+                            onAddExpenseClick = { showAddExpenseDialog = true },
+                            onExportClick = { showExportDialog = true }
+                        )
                     }
-                    val title = when (selectedTab) {
-                        0 -> "Dashboard"
-                        1 -> "Shared Folders"
-                        2 -> "Lending"
-                        else -> "Spend Reports"
+                    ScreenTab.BUDGETS -> {
+                        MonthlyBudgetScreen(
+                            viewModel = viewModel,
+                            onSetBudgetClick = { category, limit ->
+                                budgetCategoryToEdit = category
+                                budgetLimitToEdit = limit
+                                showSetBudgetDialog = true
+                            },
+                            onExportClick = { showExportDialog = true }
+                        )
                     }
-                    HighDensityHeader(subtitle = subtitle, title = title, initials = "RS")
-                }
-
-                Box(modifier = Modifier.weight(1f)) {
-                    AnimatedContent(
-                        targetState = if (selectedFolder != null) 99 else selectedTab,
-                        transitionSpec = {
-                            fadeIn() togetherWith fadeOut()
-                        },
-                        label = "tab_transitions"
-                    ) { targetTab ->
-                        when (targetTab) {
-                            0 -> PersonalExpensesTab(
-                                expenses = personalExpenses,
-                                viewModel = viewModel,
-                                onAddClick = { showAddPersonalExpenseDialog = true }
-                            )
-                            1 -> GroupFoldersTab(
-                                folders = folders,
-                                onFolderSelect = { folder -> viewModel.selectFolder(folder) },
-                                onCreateFolderClick = { showCreateFolderDialog = true },
-                                onJoinFolderClick = { showJoinFolderDialog = true },
-                                viewModel = viewModel
-                            )
-                            2 -> DebtTrackerTab(
-                                debts = debts,
-                                viewModel = viewModel,
-                                onAddDebtClick = { showAddDebtDialog = true }
-                            )
-                            3 -> ReportsTab(
-                                personalExpenses = personalExpenses,
-                                viewModel = viewModel
-                            )
-                            99 -> FolderDetailScreen(
-                                folder = selectedFolder!!,
-                                expenses = selectedFolderExpenses,
-                                viewModel = viewModel,
-                                onBackClick = { viewModel.selectFolder(null) },
-                                onAddExpenseClick = { showAddFolderExpenseDialog = true }
-                            )
-                        }
+                    ScreenTab.GROUPS -> {
+                        GroupFoldersTab(viewModel = viewModel)
+                    }
+                    ScreenTab.DEBTS -> {
+                        DebtTrackerTab(viewModel = viewModel)
+                    }
+                    ScreenTab.ANALYTICS -> {
+                        AnalyticsTab(
+                            viewModel = viewModel,
+                            onOpenExport = { showExportDialog = true },
+                            onOpenWorkSample = { showWorkSampleDialog = true }
+                        )
                     }
                 }
             }
         }
     }
 
-    // --- DIALOGS ---
+    // Dialog States
+    val exportExpenses by viewModel.personalExpenses.collectAsStateWithLifecycle()
+    val exportBudgetProgressList by viewModel.budgetProgressList.collectAsStateWithLifecycle()
+    val exportFolders by viewModel.allFolders.collectAsStateWithLifecycle()
+    val exportMonthYear by viewModel.selectedMonthYear.collectAsStateWithLifecycle()
 
-    if (showAddPersonalExpenseDialog) {
+    // Dialogs
+    if (showExportDialog) {
+        DataAnalystExportDialog(
+            expenses = exportExpenses,
+            budgetProgressList = exportBudgetProgressList,
+            folders = exportFolders,
+            selectedMonthYear = exportMonthYear,
+            onDismiss = { showExportDialog = false }
+        )
+    }
+
+    if (showWorkSampleDialog) {
+        DataAnalystPortfolioDialog(
+            expenses = exportExpenses,
+            budgetProgressList = exportBudgetProgressList,
+            folders = exportFolders,
+            onDismiss = { showWorkSampleDialog = false }
+        )
+    }
+    if (showAddExpenseDialog) {
         AddPersonalExpenseDialog(
-            categories = viewModel.categories,
-            onDismiss = { showAddPersonalExpenseDialog = false },
-            onConfirm = { amount, category, desc ->
-                viewModel.addPersonalExpense(amount, category, desc)
-                showAddPersonalExpenseDialog = false
-                Toast.makeText(context, "Personal expense added!", Toast.LENGTH_SHORT).show()
-            }
+            viewModel = viewModel,
+            onDismiss = { showAddExpenseDialog = false }
         )
     }
 
-    if (showCreateFolderDialog) {
-        CreateFolderDialog(
-            onDismiss = { showCreateFolderDialog = false },
-            onConfirm = { name, friendsString ->
-                val friends = friendsString.split(",")
-                    .map { it.trim() }
-                    .filter { it.isNotEmpty() }
-                val code = viewModel.createFolder(name, friends)
-                showCreateFolderDialog = false
-                Toast.makeText(context, "Group created with code $code!", Toast.LENGTH_LONG).show()
-            }
+    if (showSetBudgetDialog) {
+        SetCategoryBudgetDialog(
+            viewModel = viewModel,
+            initialCategory = budgetCategoryToEdit,
+            initialLimit = budgetLimitToEdit,
+            onDismiss = { showSetBudgetDialog = false }
         )
     }
 
-    if (showJoinFolderDialog) {
-        JoinFolderDialog(
-            onDismiss = { showJoinFolderDialog = false },
-            onConfirm = { code ->
-                viewModel.joinFolderWithCode(
-                    code = code,
-                    onSuccess = {
-                        showJoinFolderDialog = false
-                        Toast.makeText(context, "Joined shared folder!", Toast.LENGTH_SHORT).show()
-                    },
-                    onError = { error ->
-                        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-                    }
-                )
-            }
+    if (showOtpDialog) {
+        OtpLoginDialog(
+            viewModel = viewModel,
+            onDismiss = { showOtpDialog = false }
         )
     }
 
-    if (showAddFolderExpenseDialog && selectedFolder != null) {
-        AddFolderExpenseDialog(
-            folder = selectedFolder!!,
-            categories = viewModel.categories,
-            onDismiss = { showAddFolderExpenseDialog = false },
-            onConfirm = { amount, category, desc, paidBy ->
-                viewModel.addFolderExpense(selectedFolder!!.id, amount, category, desc, paidBy)
-                showAddFolderExpenseDialog = false
-                Toast.makeText(context, "Trip expense recorded!", Toast.LENGTH_SHORT).show()
-            }
-        )
-    }
-
-    if (showAddDebtDialog) {
-        AddDebtDialog(
-            onDismiss = { showAddDebtDialog = false },
-            onConfirm = { name, amount, desc, isLent ->
-                viewModel.addDebt(name, amount, desc, isLent)
-                showAddDebtDialog = false
-                Toast.makeText(context, "Debt log saved!", Toast.LENGTH_SHORT).show()
+    if (showProfileDialog) {
+        UserProfileDialog(
+            userState = userState,
+            onDismiss = { showProfileDialog = false },
+            onLogout = {
+                viewModel.logout()
+                showProfileDialog = false
             }
         )
     }
 }
 
-// ==========================================
-// TAB 1: PERSONAL MANUAL EXPENSES
-// ==========================================
+// =========================================================================
+// MONTHLY BUDGET SCREEN (Target Spending Limit per Category & Tracking)
+// =========================================================================
+
 @Composable
-fun PersonalExpensesTab(
-    expenses: List<Expense>,
+fun MonthlyBudgetScreen(
     viewModel: ExpenseViewModel,
-    onAddClick: () -> Unit
+    onSetBudgetClick: (String?, Double) -> Unit,
+    onExportClick: () -> Unit = {}
 ) {
-    val totalSpend = expenses.sumOf { it.amount }
-    
-    Column(
+    val budgetProgressList by viewModel.budgetProgressList.collectAsStateWithLifecycle()
+    val overallSummary by viewModel.overallBudgetSummary.collectAsStateWithLifecycle()
+    val selectedMonthYear by viewModel.selectedMonthYear.collectAsStateWithLifecycle()
+
+    val formattedMonth = remember(selectedMonthYear) {
+        try {
+            val date = SimpleDateFormat("yyyy-MM", Locale.getDefault()).parse(selectedMonthYear)
+            SimpleDateFormat("MMMM yyyy", Locale.getDefault()).format(date ?: Date())
+        } catch (e: Exception) {
+            selectedMonthYear
+        }
+    }
+
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .testTag("monthly_budget_screen"),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // High Quality Visual Hero Card with Graphic Banner
-        Card(
-            shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.cardColors(containerColor = Color(0xFF1E1035)),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-        ) {
-            Box(modifier = Modifier.fillMaxWidth()) {
-                // Background Graphic Image
-                Image(
-                    painter = painterResource(id = R.drawable.img_finance_hero),
-                    contentDescription = "Finance Graphic Banner",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .matchParentSize()
-                        .clip(RoundedCornerShape(24.dp))
-                )
-                // High contrast dark gradient scrim for readability
-                Box(
-                    modifier = Modifier
-                        .matchParentSize()
-                        .background(
-                            Brush.verticalGradient(
-                                colors = listOf(
-                                    Color(0x9917082E),
-                                    Color(0xF217082E)
-                                )
-                            )
-                        )
-                )
-
-                Column(
+        // Month Header
+        item {
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.45f)
+                ),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(20.dp)
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.Top
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
+                        Icon(
+                            imageVector = Icons.Default.CalendarMonth,
+                            contentDescription = "Month",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
                         Column {
                             Text(
-                                text = "MONTHLY SPENDING",
-                                color = Color(0xFFEADDFF),
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.Bold,
-                                letterSpacing = 1.sp
+                                text = "Monthly Budget Target",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
-                            Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = "₹${String.format(Locale.US, "%.2f", totalSpend)}",
-                                color = Color.White,
-                                fontSize = 32.sp,
-                                fontWeight = FontWeight.Black,
-                                letterSpacing = (-0.5).sp
-                            )
-                        }
-                        
-                        Box(
-                            modifier = Modifier
-                                .background(Color.White.copy(alpha = 0.2f), RoundedCornerShape(100.dp))
-                                .padding(horizontal = 10.dp, vertical = 4.dp)
-                        ) {
-                            Text(
-                                text = "+12% vs last month",
-                                color = Color.White,
-                                fontSize = 10.sp,
+                                text = formattedMonth,
+                                style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold
                             )
                         }
                     }
-                    
-                    Spacer(modifier = Modifier.height(16.dp))
-                    
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        Card(
-                            modifier = Modifier.weight(1f),
-                            shape = RoundedCornerShape(16.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.15f))
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        OutlinedButton(
+                            onClick = onExportClick,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.testTag("budget_export_csv_btn")
                         ) {
-                            Column(modifier = Modifier.padding(12.dp)) {
-                                Text(
-                                    text = "ACTIVE SPLITS",
-                                    color = Color(0xFFEADDFF),
-                                    fontSize = 9.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    letterSpacing = 0.5.sp
-                                )
-                                Spacer(modifier = Modifier.height(2.dp))
-                                Text(
-                                    text = "${expenses.size} Items",
-                                    color = Color.White,
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
+                            Icon(Icons.Default.FileDownload, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Export")
                         }
-                        Card(
-                            modifier = Modifier.weight(1f),
-                            shape = RoundedCornerShape(16.dp),
-                            colors = CardDefaults.cardColors(containerColor = Color.White.copy(alpha = 0.15f))
+
+                        OutlinedButton(
+                            onClick = { onSetBudgetClick(null, 150.0) },
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.testTag("quick_add_budget_btn")
                         ) {
-                            Column(modifier = Modifier.padding(12.dp)) {
-                                Text(
-                                    text = "LATEST SPEND",
-                                    color = Color(0xFFEADDFF),
-                                    fontSize = 9.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    letterSpacing = 0.5.sp
+                            Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Add Limit")
+                        }
+                    }
+                }
+            }
+        }
+
+        // Overall Monthly Budget Status Card
+        item {
+            OverallBudgetCard(summary = overallSummary)
+        }
+
+        // Category Budget Header & Count
+        item {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Category Limits (${budgetProgressList.size})",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+
+                if (overallSummary.exceededCount > 0) {
+                    Surface(
+                        color = MaterialTheme.colorScheme.errorContainer,
+                        shape = RoundedCornerShape(8.dp)
+                    ) {
+                        Text(
+                            text = "${overallSummary.exceededCount} Exceeded",
+                            color = MaterialTheme.colorScheme.error,
+                            style = MaterialTheme.typography.labelSmall,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                        )
+                    }
+                }
+            }
+        }
+
+        // Empty state
+        if (budgetProgressList.isEmpty()) {
+            item {
+                Card(
+                    shape = RoundedCornerShape(16.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(32.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Speed,
+                            contentDescription = "No Budgets",
+                            modifier = Modifier.size(48.dp),
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = "No Category Budgets Set",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Define spending targets per category to stay on track and prevent overspending this month.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            textAlign = TextAlign.Center
+                        )
+                        Button(
+                            onClick = { onSetBudgetClick(null, 200.0) },
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Text("Set Your First Budget")
+                        }
+                    }
+                }
+            }
+        } else {
+            // Category budget progress list
+            items(budgetProgressList, key = { it.category }) { progress ->
+                CategoryBudgetCard(
+                    progress = progress,
+                    onEdit = {
+                        onSetBudgetClick(progress.category, progress.monthlyLimit)
+                    },
+                    onDelete = {
+                        viewModel.deleteCategoryBudget(progress.category)
+                    }
+                )
+            }
+        }
+
+        // Suggestions for uncapped categories
+        item {
+            val budgetedCategories = budgetProgressList.map { it.category }.toSet()
+            val unbudgeted = viewModel.categories.filter { it !in budgetedCategories }
+            if (unbudgeted.isNotEmpty()) {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = "Quick Setup for Other Categories",
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        contentPadding = PaddingValues(vertical = 4.dp)
+                    ) {
+                        items(unbudgeted) { cat ->
+                            OutlinedButton(
+                                onClick = { onSetBudgetClick(cat, 150.0) },
+                                shape = RoundedCornerShape(12.dp)
+                            ) {
+                                Icon(
+                                    getCategoryIcon(cat),
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                    tint = getCategoryColor(cat)
                                 )
-                                Spacer(modifier = Modifier.height(2.dp))
-                                Text(
-                                    text = if (expenses.isNotEmpty()) "₹${String.format(Locale.US, "%.2f", expenses.first().amount)}" else "₹0.00",
-                                    color = Color.White,
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
-                                )
+                                Spacer(modifier = Modifier.width(6.dp))
+                                Text(cat)
                             }
                         }
                     }
@@ -463,91 +688,728 @@ fun PersonalExpensesTab(
             }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        // Bottom spacing for FAB
+        item {
+            Spacer(modifier = Modifier.height(72.dp))
+        }
+    }
+}
 
-        // Actions Row
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+@Composable
+fun OverallBudgetCard(summary: OverallBudgetSummary) {
+    Card(
+        shape = RoundedCornerShape(24.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .testTag("overall_budget_card")
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            Text(
-                text = "Recent Transactions",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold
-            )
-            
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                IconButton(
-                    onClick = { viewModel.simulateCloudSync() },
-                    modifier = Modifier.testTag("personal_sync_button")
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Sync,
-                        contentDescription = "Sync Cloud",
-                        tint = MaterialTheme.colorScheme.primary
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column {
+                    Text(
+                        text = "Total Monthly Spending",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Text(
+                        text = "$${String.format(Locale.US, "%.2f", summary.totalSpent)}",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = if (summary.isOverBudget) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                
-                Button(
-                    onClick = onAddClick,
-                    shape = RoundedCornerShape(12.dp),
-                    modifier = Modifier.testTag("add_personal_expense_fab")
+
+                Surface(
+                    shape = RoundedCornerShape(16.dp),
+                    color = if (summary.isOverBudget) MaterialTheme.colorScheme.errorContainer else MaterialTheme.colorScheme.primaryContainer,
+                    modifier = Modifier.padding(4.dp)
                 ) {
-                    Icon(Icons.Default.Add, contentDescription = "Add")
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text("Add")
+                    Column(
+                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp),
+                        horizontalAlignment = Alignment.End
+                    ) {
+                        Text(
+                            text = if (summary.isOverBudget) "Over Budget" else "Target Budget",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = if (summary.isOverBudget) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                        )
+                        Text(
+                            text = "$${String.format(Locale.US, "%.2f", summary.totalBudget)}",
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.titleMedium,
+                            color = if (summary.isOverBudget) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+                        )
+                    }
+                }
+            }
+
+            // Progress bar
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                val animatedProgress by animateFloatAsState(targetValue = summary.progressFraction, label = "progress")
+                val barColor = when {
+                    summary.isOverBudget -> MaterialTheme.colorScheme.error
+                    summary.progressFraction >= 0.8f -> Color(0xFFF59E0B)
+                    else -> MaterialTheme.colorScheme.primary
+                }
+
+                LinearProgressIndicator(
+                    progress = { animatedProgress },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(10.dp)
+                        .clip(RoundedCornerShape(5.dp)),
+                    color = barColor,
+                    trackColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f)
+                )
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(
+                        text = "${summary.progressPercentage}% of total limit",
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = barColor
+                    )
+                    Text(
+                        text = if (summary.isOverBudget) {
+                            "Over by $${String.format(Locale.US, "%.2f", summary.totalOverspent)}"
+                        } else {
+                            "$${String.format(Locale.US, "%.2f", summary.totalRemaining)} remaining"
+                        },
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = if (summary.isOverBudget) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+
+            // Summary metrics pills
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                MetricChip(
+                    label = "Budgeted",
+                    value = "${summary.budgetedCategoriesCount} Categories",
+                    color = MaterialTheme.colorScheme.primary
+                )
+                if (summary.nearLimitCount > 0) {
+                    MetricChip(
+                        label = "Near Limit",
+                        value = "${summary.nearLimitCount}",
+                        color = Color(0xFFF59E0B)
+                    )
+                }
+                if (summary.exceededCount > 0) {
+                    MetricChip(
+                        label = "Over Limit",
+                        value = "${summary.exceededCount}",
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun MetricChip(label: String, value: String, color: Color) {
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = color.copy(alpha = 0.12f)
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Text(
+                text = "$label:",
+                style = MaterialTheme.typography.labelSmall,
+                color = color
+            )
+            Text(
+                text = value,
+                style = MaterialTheme.typography.labelSmall,
+                fontWeight = FontWeight.Bold,
+                color = color
+            )
+        }
+    }
+}
+
+@Composable
+fun CategoryBudgetCard(
+    progress: CategoryBudgetProgress,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit
+) {
+    val categoryColor = getCategoryColor(progress.category)
+    val statusColor = when (progress.status) {
+        BudgetHealth.EXCEEDED -> MaterialTheme.colorScheme.error
+        BudgetHealth.WARNING -> Color(0xFFF59E0B)
+        BudgetHealth.SAFE -> Color(0xFF10B981)
+    }
+
+    val animatedFraction by animateFloatAsState(targetValue = progress.progressFraction, label = "fraction")
+
+    Card(
+        shape = RoundedCornerShape(18.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .testTag("budget_card_${progress.category.replace(" ", "_").lowercase()}")
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            // Category Icon & Name, Status Badge, Edit / Delete
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = categoryColor.copy(alpha = 0.15f),
+                        modifier = Modifier.size(42.dp)
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(
+                                imageVector = getCategoryIcon(progress.category),
+                                contentDescription = progress.category,
+                                tint = categoryColor,
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
+                    }
+
+                    Column {
+                        Text(
+                            text = progress.category,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            if (progress.status == BudgetHealth.EXCEEDED) {
+                                Icon(
+                                    imageVector = Icons.Default.Warning,
+                                    contentDescription = "Exceeded",
+                                    tint = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.size(14.dp)
+                                )
+                                Text(
+                                    text = "Exceeded by $${String.format(Locale.US, "%.2f", progress.overspentAmount)}",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.error,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            } else if (progress.status == BudgetHealth.WARNING) {
+                                Icon(
+                                    imageVector = Icons.Default.Warning,
+                                    contentDescription = "Near limit",
+                                    tint = Color(0xFFF59E0B),
+                                    modifier = Modifier.size(14.dp)
+                                )
+                                Text(
+                                    text = "$${String.format(Locale.US, "%.2f", progress.remainingAmount)} left (Near limit)",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = Color(0xFFF59E0B),
+                                    fontWeight = FontWeight.Bold
+                                )
+                            } else {
+                                Icon(
+                                    imageVector = Icons.Default.CheckCircle,
+                                    contentDescription = "On track",
+                                    tint = Color(0xFF10B981),
+                                    modifier = Modifier.size(14.dp)
+                                )
+                                Text(
+                                    text = "$${String.format(Locale.US, "%.2f", progress.remainingAmount)} left",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = Color(0xFF10B981),
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Edit and Delete buttons
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    IconButton(
+                        onClick = onEdit,
+                        modifier = Modifier
+                            .size(36.dp)
+                            .testTag("edit_budget_${progress.category}")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Edit,
+                            contentDescription = "Edit Budget",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
+
+                    IconButton(
+                        onClick = onDelete,
+                        modifier = Modifier
+                            .size(36.dp)
+                            .testTag("delete_budget_${progress.category}")
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Delete,
+                            contentDescription = "Delete Budget",
+                            tint = MaterialTheme.colorScheme.error.copy(alpha = 0.8f),
+                            modifier = Modifier.size(18.dp)
+                        )
+                    }
+                }
+            }
+
+            // Spending and Limit Numbers
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Bottom
+            ) {
+                Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text(
+                        text = "$${String.format(Locale.US, "%.2f", progress.spentAmount)}",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = if (progress.status == BudgetHealth.EXCEEDED) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurface
+                    )
+                    Text(
+                        text = "spent",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(bottom = 2.dp)
+                    )
+                }
+
+                Text(
+                    text = "Limit: $${String.format(Locale.US, "%.2f", progress.monthlyLimit)}",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.SemiBold
+                )
+            }
+
+            // Progress bar
+            LinearProgressIndicator(
+                progress = { animatedFraction },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(8.dp)
+                    .clip(RoundedCornerShape(4.dp)),
+                color = statusColor,
+                trackColor = MaterialTheme.colorScheme.surfaceVariant
+            )
+
+            // Percentage and health status
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "${progress.progressPercentage}% used",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = statusColor,
+                    fontWeight = FontWeight.Bold
+                )
+
+                Text(
+                    text = when (progress.status) {
+                        BudgetHealth.EXCEEDED -> "OVER BUDGET"
+                        BudgetHealth.WARNING -> "80%+ USED"
+                        BudgetHealth.SAFE -> "ON TRACK"
+                    },
+                    style = MaterialTheme.typography.labelSmall,
+                    color = statusColor,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+    }
+}
+
+// =========================================================================
+// SET / EDIT CATEGORY BUDGET DIALOG
+// =========================================================================
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SetCategoryBudgetDialog(
+    viewModel: ExpenseViewModel,
+    initialCategory: String?,
+    initialLimit: Double,
+    onDismiss: () -> Unit
+) {
+    var selectedCategory by remember {
+        mutableStateOf(initialCategory ?: viewModel.categories.first())
+    }
+    var limitInput by remember {
+        mutableStateOf(if (initialLimit > 0) String.format(Locale.US, "%.2f", initialLimit) else "")
+    }
+    var categoryDropdownExpanded by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+
+    val presetAmounts = listOf(50.0, 100.0, 250.0, 500.0, 1000.0)
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = if (initialCategory != null) "Edit Category Budget" else "Set Target Monthly Limit",
+                fontWeight = FontWeight.Bold
+            )
+        },
+        text = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                Text(
+                    text = "Define a monthly spending target for this category. We will notify you as you approach or exceed it.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+
+                // Category selector
+                ExposedDropdownMenuBox(
+                    expanded = categoryDropdownExpanded,
+                    onExpandedChange = { categoryDropdownExpanded = !categoryDropdownExpanded }
+                ) {
+                    OutlinedTextField(
+                        value = selectedCategory,
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text("Category") },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = categoryDropdownExpanded) },
+                        leadingIcon = {
+                            Icon(
+                                getCategoryIcon(selectedCategory),
+                                contentDescription = null,
+                                tint = getCategoryColor(selectedCategory)
+                            )
+                        },
+                        modifier = Modifier
+                            .menuAnchor()
+                            .fillMaxWidth()
+                            .testTag("budget_category_select")
+                    )
+
+                    ExposedDropdownMenu(
+                        expanded = categoryDropdownExpanded,
+                        onDismissRequest = { categoryDropdownExpanded = false }
+                    ) {
+                        viewModel.categories.forEach { cat ->
+                            DropdownMenuItem(
+                                text = { Text(cat) },
+                                leadingIcon = {
+                                    Icon(
+                                        getCategoryIcon(cat),
+                                        contentDescription = null,
+                                        tint = getCategoryColor(cat)
+                                    )
+                                },
+                                onClick = {
+                                    selectedCategory = cat
+                                    categoryDropdownExpanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+
+                // Target Amount Input
+                OutlinedTextField(
+                    value = limitInput,
+                    onValueChange = {
+                        limitInput = it
+                        errorMessage = null
+                    },
+                    label = { Text("Monthly Spending Limit ($)") },
+                    placeholder = { Text("e.g. 350.00") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    singleLine = true,
+                    leadingIcon = {
+                        Text(
+                            "$",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    },
+                    isError = errorMessage != null,
+                    supportingText = errorMessage?.let { { Text(it, color = MaterialTheme.colorScheme.error) } },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("budget_limit_input")
+                )
+
+                // Quick preset buttons
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text(
+                        text = "Quick Presets",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        presetAmounts.forEach { preset ->
+                            Surface(
+                                shape = RoundedCornerShape(8.dp),
+                                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .clickable {
+                                        limitInput = String.format(Locale.US, "%.0f", preset)
+                                        errorMessage = null
+                                    }
+                            ) {
+                                Text(
+                                    text = "$${preset.toInt()}",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary,
+                                    textAlign = TextAlign.Center,
+                                    modifier = Modifier.padding(vertical = 8.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    val parsed = limitInput.toDoubleOrNull()
+                    if (parsed == null || parsed <= 0.0) {
+                        errorMessage = "Please enter a valid amount greater than 0"
+                    } else {
+                        viewModel.setCategoryBudget(selectedCategory, parsed)
+                        onDismiss()
+                    }
+                },
+                modifier = Modifier.testTag("save_budget_button")
+            ) {
+                Text("Save Budget")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Cancel")
+            }
+        }
+    )
+}
+
+// =========================================================================
+// PERSONAL EXPENSES TAB
+// =========================================================================
+
+@Composable
+fun PersonalExpensesTab(
+    viewModel: ExpenseViewModel,
+    onAddExpenseClick: () -> Unit,
+    onExportClick: () -> Unit = {}
+) {
+    val expenses by viewModel.personalExpenses.collectAsStateWithLifecycle()
+    var selectedCategoryFilter by remember { mutableStateOf<String?>(null) }
+
+    val filteredExpenses = remember(expenses, selectedCategoryFilter) {
+        if (selectedCategoryFilter == null) expenses
+        else expenses.filter { it.category == selectedCategoryFilter }
+    }
+
+    val totalSpent = remember(filteredExpenses) {
+        filteredExpenses.sumOf { it.amount }
+    }
+
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag("personal_expenses_tab"),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        // Summary Card
+        item {
+            Card(
+                shape = RoundedCornerShape(22.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer
+                ),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = if (selectedCategoryFilter != null) "$selectedCategoryFilter Expenses" else "Total Personal Spending",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                        )
+                        OutlinedButton(
+                            onClick = onExportClick,
+                            shape = RoundedCornerShape(10.dp),
+                            colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.onPrimaryContainer),
+                            modifier = Modifier.testTag("personal_expenses_export_csv_btn")
+                        ) {
+                            Icon(Icons.Default.FileDownload, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Export CSV", fontSize = 12.sp)
+                        }
+                    }
+                    Text(
+                        text = "$${String.format(Locale.US, "%.2f", totalSpent)}",
+                        style = MaterialTheme.typography.headlineLarge,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                    Text(
+                        text = "${filteredExpenses.size} transactions recorded",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f)
+                    )
                 }
             }
         }
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        if (expenses.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentAlignment = Alignment.Center
+        // Category Filter Pills
+        item {
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(vertical = 4.dp)
             ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(16.dp)
+                item {
+                    val isAll = selectedCategoryFilter == null
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = if (isAll) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
+                        modifier = Modifier.clickable { selectedCategoryFilter = null }
+                    ) {
+                        Text(
+                            text = "All Categories",
+                            color = if (isAll) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                            style = MaterialTheme.typography.labelMedium,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(horizontal = 14.dp, vertical = 8.dp)
+                        )
+                    }
+                }
+
+                items(viewModel.categories) { cat ->
+                    val isSelected = selectedCategoryFilter == cat
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
+                        modifier = Modifier.clickable { selectedCategoryFilter = cat }
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            Icon(
+                                imageVector = getCategoryIcon(cat),
+                                contentDescription = cat,
+                                tint = if (isSelected) MaterialTheme.colorScheme.onPrimary else getCategoryColor(cat),
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Text(
+                                text = cat,
+                                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
+                                style = MaterialTheme.typography.labelMedium,
+                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        if (filteredExpenses.isEmpty()) {
+            item {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 40.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    // High quality 3D illustration empty state
-                    Image(
-                        painter = painterResource(id = R.drawable.img_empty_expenses),
-                        contentDescription = "Empty expenses illustration",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier
-                            .size(140.dp)
-                            .clip(RoundedCornerShape(20.dp))
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "No expenses recorded yet",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Tap '+ Add' to record your first expense or split costs with friends.",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(horizontal = 16.dp)
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Receipt,
+                            contentDescription = "No Expenses",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                            modifier = Modifier.size(48.dp)
+                        )
+                        Text(
+                            text = "No expenses recorded",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
                 }
             }
         } else {
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                items(expenses) { expense ->
-                    ExpenseCard(expense = expense, onDelete = { viewModel.deleteExpense(expense) })
-                }
+            items(filteredExpenses, key = { it.id }) { expense ->
+                ExpenseCard(
+                    expense = expense,
+                    onDelete = { viewModel.deleteExpense(expense) }
+                )
             }
+        }
+
+        item {
+            Spacer(modifier = Modifier.height(72.dp))
         }
     }
 }
@@ -555,1440 +1417,174 @@ fun PersonalExpensesTab(
 @Composable
 fun ExpenseCard(expense: Expense, onDelete: () -> Unit) {
     val categoryColor = getCategoryColor(expense.category)
-    OutlinedCard(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.outlinedCardColors(
-            containerColor = Color.White
-        ),
-        border = BorderStroke(1.dp, Color(0xFFECE6F0)),
-        modifier = Modifier
-            .fillMaxWidth()
-            .testTag("expense_item_${expense.id}")
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // High Density category badge: 40x40, rounded-xl, bg-[#f7f2fa]
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(
-                        color = Color(0xFFF7F2FA),
-                        shape = RoundedCornerShape(12.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = getCategoryIcon(expense.category),
-                    contentDescription = expense.category,
-                    tint = Color(0xFF6750A4),
-                    modifier = Modifier.size(20.dp)
-                )
-            }
 
-            Spacer(modifier = Modifier.width(12.dp))
-
-            // Details
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = expense.description.ifBlank { expense.category },
-                    color = Color(0xFF1D1B20),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                
-                Spacer(modifier = Modifier.height(4.dp))
-                
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp)
-                ) {
-                    // Category Badge Capsule: bg-color/10, text-color/100
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                color = categoryColor.copy(alpha = 0.1f),
-                                shape = RoundedCornerShape(6.dp)
-                            )
-                            .padding(horizontal = 8.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = expense.category.uppercase(),
-                            color = categoryColor,
-                            fontSize = 9.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                    
-                    Text(
-                        text = formatTimestamp(expense.timestamp),
-                        color = Color.Gray,
-                        fontSize = 10.sp
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.width(8.dp))
-
-            // Pricing & Actions: Negative red pricing
-            Column(horizontalAlignment = Alignment.End) {
-                Text(
-                    text = "-₹${String.format(Locale.US, "%.2f", expense.amount)}",
-                    fontWeight = FontWeight.Bold,
-                    color = Color(0xFFB3261E),
-                    fontSize = 14.sp
-                )
-                
-                IconButton(
-                    onClick = onDelete,
-                    modifier = Modifier.size(24.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete Expense",
-                        tint = Color.Gray.copy(alpha = 0.6f),
-                        modifier = Modifier.size(14.dp)
-                    )
-                }
-            }
-        }
-    }
-}
-
-// ==========================================
-// TAB 2: TRIP GROUPS (FOLDERS)
-// ==========================================
-@Composable
-fun GroupFoldersTab(
-    folders: List<Folder>,
-    onFolderSelect: (Folder) -> Unit,
-    onCreateFolderClick: () -> Unit,
-    onJoinFolderClick: () -> Unit,
-    viewModel: ExpenseViewModel
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // High Quality Graphic Hero Banner for Trip Groups
-        Card(
-            shape = RoundedCornerShape(20.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(130.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-        ) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                Image(
-                    painter = painterResource(id = R.drawable.img_group_trips),
-                    contentDescription = "Group Trips Banner",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            Brush.horizontalGradient(
-                                colors = listOf(
-                                    Color(0xE61A0933),
-                                    Color(0x801A0933),
-                                    Color(0x33000000)
-                                )
-                            )
-                        )
-                )
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "Shared Trips & Groups",
-                        color = Color.White,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Split vacation bills, dinners & shared costs effortlessly with friends.",
-                        color = Color(0xFFEADDFF),
-                        fontSize = 11.sp,
-                        lineHeight = 15.sp,
-                        modifier = Modifier.fillMaxWidth(0.75f)
-                    )
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Options to join or create
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Button(
-                onClick = onCreateFolderClick,
-                modifier = Modifier
-                    .weight(1f)
-                    .testTag("create_folder_button"),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Icon(Icons.Default.CreateNewFolder, contentDescription = "Create")
-                Spacer(modifier = Modifier.width(6.dp))
-                Text("Create Folder")
-            }
-
-            OutlinedButton(
-                onClick = onJoinFolderClick,
-                modifier = Modifier
-                    .weight(1f)
-                    .testTag("join_folder_button"),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Icon(Icons.Default.GroupAdd, contentDescription = "Join")
-                Spacer(modifier = Modifier.width(6.dp))
-                Text("Join with Code")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        if (folders.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_group_trips),
-                        contentDescription = "No Groups",
-                        modifier = Modifier
-                            .size(130.dp)
-                            .clip(RoundedCornerShape(18.dp)),
-                        contentScale = ContentScale.Crop
-                    )
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Text(
-                        text = "No shared trip folders yet",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Create a folder for your trip and invite your friends using a unique access code!",
-                        style = MaterialTheme.typography.bodyMedium,
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
-                        modifier = Modifier.padding(horizontal = 24.dp)
-                    )
-                }
-            }
-        } else {
-            Text(
-                text = "Active Folders",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(bottom = 8.dp)
-            )
-
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                modifier = Modifier.weight(1f)
-            ) {
-                items(folders) { folder ->
-                    FolderCard(folder = folder, onClick = { onFolderSelect(folder) }, viewModel = viewModel)
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun FolderCard(folder: Folder, onClick: () -> Unit, viewModel: ExpenseViewModel) {
-    val expensesFlow = remember(folder.id) { viewModel.getFolderExpenses(folder.id) }
-    val expenses by expensesFlow.collectAsStateWithLifecycle(initialValue = emptyList())
-    val totalSpend = expenses.sumOf { it.amount }
-    
-    OutlinedCard(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.outlinedCardColors(containerColor = Color.White),
-        border = BorderStroke(1.dp, Color(0xFFECE6F0)),
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .testTag("folder_item_${folder.id}")
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .size(36.dp)
-                            .background(Color(0xFFEADDFF), CircleShape),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Folder,
-                            contentDescription = "Folder",
-                            tint = Color(0xFF21005D),
-                            modifier = Modifier.size(18.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        text = folder.name,
-                        color = Color(0xFF1D1B20),
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-                
-                // Code badge
-                Box(
-                    modifier = Modifier
-                        .background(
-                            Color(0xFFE8DEF8),
-                            RoundedCornerShape(8.dp)
-                        )
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
-                ) {
-                    Text(
-                        text = "CODE: ${folder.id}",
-                        color = Color(0xFF6750A4),
-                        fontSize = 9.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 0.5.sp
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(12.dp))
-
-            // Info rows
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column {
-                    Text(
-                        text = "MEMBERS",
-                        color = Color.Gray,
-                        fontSize = 9.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 0.5.sp
-                    )
-                    Text(
-                        text = "${folder.getMemberList().size} connected",
-                        color = Color(0xFF1D1B20),
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-
-                Column(horizontalAlignment = Alignment.End) {
-                    Text(
-                        text = "TOTAL EXPENDITURE",
-                        color = Color.Gray,
-                        fontSize = 9.sp,
-                        fontWeight = FontWeight.Bold,
-                        letterSpacing = 0.5.sp
-                    )
-                    Text(
-                        text = "₹${String.format(Locale.US, "%.2f", totalSpend)}",
-                        color = Color(0xFF6750A4),
-                        fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Show short list of member names
-            Text(
-                text = "Members: " + folder.getMemberList().joinToString(", "),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                fontSize = 11.sp,
-                color = Color.Gray
-            )
-        }
-    }
-}
-
-// ==========================================
-// SUB-SCREEN: FOLDER DETAIL & SPLIT CALCULATIONS
-// ==========================================
-@Composable
-fun FolderDetailScreen(
-    folder: Folder,
-    expenses: List<Expense>,
-    viewModel: ExpenseViewModel,
-    onBackClick: () -> Unit,
-    onAddExpenseClick: () -> Unit
-) {
-    val clipboardManager = LocalClipboardManager.current
-    val context = LocalContext.current
-    val members = folder.getMemberList()
-    val totalTripSpend = expenses.sumOf { it.amount }
-    val myShare = totalTripSpend / (if (members.isNotEmpty()) members.size else 1)
-    
-    // Compute total paid by Me
-    val paidByMe = expenses.filter { it.paidBy == "Me" }.sumOf { it.amount }
-    val myBalance = paidByMe - myShare // positive means people owe me, negative means I owe people
-
-    // Calculate optimal debt transactions
-    val transactions = viewModel.calculateFolderSettlements(members, expenses)
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // Top app bar back controller
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            IconButton(onClick = onBackClick) {
-                Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
-            }
-            Text(
-                text = folder.name,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
-            )
-            IconButton(
-                onClick = { viewModel.simulateFriendActivity() },
-                modifier = Modifier.testTag("trigger_friend_simulate_btn")
-            ) {
-                Icon(
-                    imageVector = Icons.Default.FlashOn,
-                    contentDescription = "Simulate Activity",
-                    tint = MaterialTheme.colorScheme.tertiary
-                )
-            }
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        // Access Code card
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f)
-            ),
-            shape = RoundedCornerShape(12.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Row(
-                modifier = Modifier.padding(12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column {
-                    Text(
-                        text = "Access Invite Code",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f)
-                    )
-                    Text(
-                        text = folder.id,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.primary
-                    )
-                }
-                Button(
-                    onClick = {
-                        clipboardManager.setText(AnnotatedString(folder.id))
-                        Toast.makeText(context, "Code copied to clipboard!", Toast.LENGTH_SHORT).show()
-                    },
-                    shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
-                    )
-                ) {
-                    Icon(Icons.Default.ContentCopy, contentDescription = "Copy", modifier = Modifier.size(16.dp))
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text("Copy Code")
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Multiplayer Sync Status banner
-        Card(
-            shape = RoundedCornerShape(12.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
-            ),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Row(
-                modifier = Modifier.padding(12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = Icons.Default.Wifi,
-                        contentDescription = "Live Syncing",
-                        tint = MaterialTheme.colorScheme.secondary,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "Connected Sync Room",
-                        style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-                
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TextButton(
-                        onClick = { viewModel.simulateFriendActivity() },
-                        modifier = Modifier.testTag("friend_expense_action_btn")
-                    ) {
-                        Text("+ Friend Expense", fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                    }
-                    TextButton(
-                        onClick = { viewModel.simulateCloudSync() }
-                    ) {
-                        Text("Sync All", fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                    }
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Split calculations stats
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.2f)
-            ),
-            shape = RoundedCornerShape(16.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(
-                    text = "Split Report Overview",
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.secondary
-                )
-                Spacer(modifier = Modifier.height(12.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Column {
-                        Text("Total Trip Cost", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        Text("₹${String.format(Locale.US, "%.2f", totalTripSpend)}", fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                    }
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Text("Your Share", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        Text("₹${String.format(Locale.US, "%.2f", myShare)}", fontWeight = FontWeight.Bold, fontSize = 16.sp)
-                    }
-                    Column(horizontalAlignment = Alignment.End) {
-                        Text("Your Balance", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        val textBalanceColor = if (myBalance >= 0) Color(0xFF1B5E20) else Color(0xFFB71C1C)
-                        val prefix = if (myBalance >= 0) "Owed +₹" else "You owe ₹"
-                        Text(
-                            text = "$prefix${String.format(Locale.US, "%.2f", abs(myBalance))}",
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 16.sp,
-                            color = textBalanceColor
-                        )
-                    }
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Transactions settlements list
-        Text(
-            text = "Settlement suggestions",
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.SemiBold
-        )
-        
-        Spacer(modifier = Modifier.height(8.dp))
-
-        if (transactions.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(
-                        color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
-                        shape = RoundedCornerShape(12.dp)
-                    )
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        imageVector = Icons.Default.CheckCircle,
-                        contentDescription = "Settled",
-                        tint = Color(0xFF2E7D32)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "All costs are fully settled! Perfect balance.",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color(0xFF2E7D32),
-                        fontWeight = FontWeight.Medium
-                    )
-                }
-            }
-        } else {
-            LazyColumn(
-                modifier = Modifier.heightIn(max = 140.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp)
-            ) {
-                items(transactions) { trans ->
-                    TransactionSettlementRow(trans)
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Trip expenses header and FAB
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = "Folder Expenses",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold
-            )
-            
-            Button(
-                onClick = onAddExpenseClick,
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier.testTag("add_folder_expense_btn")
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Add Trip Expense")
-                Spacer(modifier = Modifier.width(4.dp))
-                Text("Add Expense")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        if (expenses.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(
-                    text = "No expenses added inside this folder yet.",
-                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
-        } else {
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(expenses) { exp ->
-                    FolderExpenseCard(expense = exp, onDelete = { viewModel.deleteExpense(exp) })
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun TransactionSettlementRow(trans: Transaction) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
-                shape = RoundedCornerShape(12.dp)
-            )
-            .padding(12.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(
-                text = trans.from,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.error
-            )
-            Icon(
-                imageVector = Icons.Default.ArrowForward,
-                contentDescription = "Owes",
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier
-                    .size(16.dp)
-                    .padding(horizontal = 4.dp)
-            )
-            Text(
-                text = trans.to,
-                fontWeight = FontWeight.Bold,
-                color = Color(0xFF2E7D32)
-            )
-        }
-
-        Text(
-            text = "Owes ₹${String.format(Locale.US, "%.2f", trans.amount)}",
-            fontWeight = FontWeight.Bold,
-            style = MaterialTheme.typography.bodyMedium
-        )
-    }
-}
-
-@Composable
-fun FolderExpenseCard(expense: Expense, onDelete: () -> Unit) {
     Card(
-        shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
-        ),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
         modifier = Modifier.fillMaxWidth()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // Category Icon Badge
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(
-                        color = getCategoryColor(expense.category).copy(alpha = 0.15f),
-                        shape = RoundedCornerShape(10.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = getCategoryIcon(expense.category),
-                    contentDescription = expense.category,
-                    tint = getCategoryColor(expense.category),
-                    modifier = Modifier.size(20.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            // Info details
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = expense.description.ifBlank { expense.category },
-                    style = MaterialTheme.typography.bodyLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-                
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                color = MaterialTheme.colorScheme.primaryContainer,
-                                shape = RoundedCornerShape(4.dp)
-                            )
-                            .padding(horizontal = 6.dp, vertical = 2.dp)
-                    ) {
-                        Text(
-                            text = "Paid by ${expense.paidBy}",
-                            style = MaterialTheme.typography.labelSmall,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                    
-                    Spacer(modifier = Modifier.width(6.dp))
-                    Text(
-                        text = formatTimestamp(expense.timestamp),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.width(8.dp))
-
-            // Pricing details & delete
-            Column(horizontalAlignment = Alignment.End) {
-                Text(
-                    text = "₹${String.format(Locale.US, "%.2f", expense.amount)}",
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.titleMedium
-                )
-                
-                IconButton(
-                    onClick = onDelete,
-                    modifier = Modifier.size(24.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Delete,
-                        contentDescription = "Delete expense",
-                        tint = MaterialTheme.colorScheme.error.copy(alpha = 0.7f),
-                        modifier = Modifier.size(14.dp)
-                    )
-                }
-            }
-        }
-    }
-}
-
-// ==========================================
-// TAB 3: GENERAL DEBT TRACKER
-// ==========================================
-@Composable
-fun DebtTrackerTab(
-    debts: List<Debt>,
-    viewModel: ExpenseViewModel,
-    onAddDebtClick: () -> Unit
-) {
-    val activeDebts = debts.filter { !it.isSettled }
-    val settledDebts = debts.filter { it.isSettled }
-
-    val amountIOwe = activeDebts.filter { it.amount < 0 }.sumOf { abs(it.amount) }
-    val amountOwedToMe = activeDebts.filter { it.amount > 0 }.sumOf { it.amount }
-    val netBalance = amountOwedToMe - amountIOwe
-
-    var showSettledHistory by remember { mutableStateOf(false) }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Column {
-                Text(
-                    text = "Money Lent / Borrowed",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(
-                    text = "Keep track of direct money transfers",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-            
-            Button(
-                onClick = onAddDebtClick,
-                shape = RoundedCornerShape(12.dp),
-                modifier = Modifier.testTag("add_debt_button")
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Add Debt Log")
-                Spacer(modifier = Modifier.width(4.dp))
-                Text("Log Debt")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Debt Overview statistics card
-        OutlinedCard(
-            shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.outlinedCardColors(containerColor = Color.White),
-            border = BorderStroke(1.dp, Color(0xFFECE6F0)),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Column(modifier = Modifier.padding(20.dp)) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.Top
-                ) {
-                    Column {
-                        Text(
-                            text = "LENDING BALANCE SUMMARY",
-                            color = Color(0xFF6750A4),
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = 1.sp
-                        )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        val prefix = if (netBalance >= 0) "+₹" else "-₹"
-                        val netColor = if (netBalance >= 0) Color(0xFF2E7D32) else Color(0xFFB3261E)
-                        Text(
-                            text = "$prefix${String.format(Locale.US, "%.2f", abs(netBalance))}",
-                            color = netColor,
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Black,
-                            letterSpacing = (-0.5).sp
-                        )
-                    }
-                    
-                    Box(
-                        modifier = Modifier
-                            .background(Color(0xFFE8DEF8), RoundedCornerShape(100.dp))
-                            .padding(horizontal = 10.dp, vertical = 4.dp)
-                    ) {
-                        Text(
-                            text = if (netBalance >= 0) "Surplus" else "Deficit",
-                            color = Color(0xFF6750A4),
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    }
-                }
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    Card(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFDF7FF))
-                    ) {
-                        Column(modifier = Modifier.padding(12.dp)) {
-                            Text(
-                                text = "PEOPLE OWE YOU",
-                                color = Color.Gray,
-                                fontSize = 9.sp,
-                                fontWeight = FontWeight.Bold,
-                                letterSpacing = 0.5.sp
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "₹${String.format(Locale.US, "%.2f", amountOwedToMe)}",
-                                color = Color(0xFF2E7D32),
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                    Card(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFDF7FF))
-                    ) {
-                        Column(modifier = Modifier.padding(12.dp)) {
-                            Text(
-                                text = "YOU OWE PEOPLE",
-                                color = Color.Gray,
-                                fontSize = 9.sp,
-                                fontWeight = FontWeight.Bold,
-                                letterSpacing = 0.5.sp
-                            )
-                            Spacer(modifier = Modifier.height(2.dp))
-                            Text(
-                                text = "₹${String.format(Locale.US, "%.2f", amountIOwe)}",
-                                color = Color(0xFFB3261E),
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                }
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Toggle History Switch
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = if (showSettledHistory) "Settled Logs History" else "Active Debt Logs",
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold
-            )
-            
-            TextButton(
-                onClick = { showSettledHistory = !showSettledHistory }
-            ) {
-                Text(if (showSettledHistory) "Show Active" else "Show History")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        val listToDisplay = if (showSettledHistory) settledDebts else activeDebts
-
-        if (listToDisplay.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(
-                        imageVector = if (showSettledHistory) Icons.Default.History else Icons.Default.CheckCircleOutline,
-                        contentDescription = "Empty",
-                        modifier = Modifier.size(56.dp),
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f)
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = if (showSettledHistory) "No history found." else "Clear! Nobody owes you anything.",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
-                    )
-                }
-            }
-        } else {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(10.dp),
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.weight(1f)
             ) {
-                items(listToDisplay) { debt ->
-                    DebtCard(debt = debt, onSettle = { viewModel.settleDebt(debt) }, onDelete = { viewModel.deleteDebt(debt) })
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun DebtCard(debt: Debt, onSettle: () -> Unit, onDelete: () -> Unit) {
-    val isOwed = debt.amount > 0
-    val absAmount = abs(debt.amount)
-    val themeColor = if (isOwed) Color(0xFF2E7D32) else Color(0xFFB3261E)
-    
-    OutlinedCard(
-        shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.outlinedCardColors(containerColor = Color.White),
-        border = BorderStroke(1.dp, Color(0xFFECE6F0)),
-        modifier = Modifier
-            .fillMaxWidth()
-            .testTag("debt_item_${debt.id}")
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            // Indicator Badge: bg-color/10, text-color/100
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(
-                        color = themeColor.copy(alpha = 0.1f),
-                        shape = RoundedCornerShape(12.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = if (isOwed) Icons.Default.ArrowDownward else Icons.Default.ArrowUpward,
-                    contentDescription = if (isOwed) "Lent" else "Borrowed",
-                    tint = themeColor,
-                    modifier = Modifier.size(20.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.width(12.dp))
-
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = debt.personName,
-                    color = Color(0xFF1D1B20),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = debt.description.ifBlank { if (isOwed) "Lent money" else "Borrowed money" },
-                    color = Color.Gray,
-                    fontSize = 11.sp
-                )
-                Spacer(modifier = Modifier.height(2.dp))
-                Text(
-                    text = formatTimestamp(debt.timestamp),
-                    color = Color.LightGray,
-                    fontSize = 9.sp
-                )
-            }
-
-            Column(horizontalAlignment = Alignment.End) {
-                Text(
-                    text = "₹${String.format(Locale.US, "%.2f", absAmount)}",
-                    fontWeight = FontWeight.Bold,
-                    color = if (debt.isSettled) Color.Gray.copy(alpha = 0.6f) else themeColor,
-                    fontSize = 15.sp
-                )
-                
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    if (!debt.isSettled) {
-                        TextButton(
-                            onClick = onSettle,
-                            modifier = Modifier.height(32.dp)
-                        ) {
-                            Text(
-                                text = "Settle up",
-                                color = Color(0xFF6750A4),
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
-                    }
-                    IconButton(
-                        onClick = onDelete,
-                        modifier = Modifier.size(24.dp)
-                    ) {
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = categoryColor.copy(alpha = 0.15f),
+                    modifier = Modifier.size(44.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
                         Icon(
-                            imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete Log",
-                            tint = Color.Gray.copy(alpha = 0.6f),
-                            modifier = Modifier.size(14.dp)
+                            imageVector = getCategoryIcon(expense.category),
+                            contentDescription = expense.category,
+                            tint = categoryColor,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
+
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text(
+                        text = expense.description,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text(
+                            text = expense.category,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = categoryColor,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                        Text(
+                            text = "•",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            text = formatTimestamp(expense.timestamp),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
             }
-        }
-    }
-}
 
-// ==========================================
-// TAB 4: REPORTS & ANALYTICS
-// ==========================================
-@Composable
-fun ReportsTab(
-    personalExpenses: List<Expense>,
-    viewModel: ExpenseViewModel
-) {
-    val totalPersonal = personalExpenses.sumOf { it.amount }
-    val categoryMap = viewModel.getCategoryBreakdown(personalExpenses)
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(
-            text = "Monthly Spending Report",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
-        )
-        Text(
-            text = viewModel.getCurrentMonthYear(),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-
-        Spacer(modifier = Modifier.height(20.dp))
-
-        if (personalExpenses.isEmpty()) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img_empty_expenses),
-                        contentDescription = "Empty Report Illustration",
-                        modifier = Modifier
-                            .size(130.dp)
-                            .clip(RoundedCornerShape(18.dp)),
-                        contentScale = ContentScale.Crop
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "$${String.format(Locale.US, "%.2f", expense.amount)}",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                IconButton(onClick = onDelete) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete",
+                        tint = MaterialTheme.colorScheme.error.copy(alpha = 0.7f),
+                        modifier = Modifier.size(18.dp)
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Text(
-                        text = "Not enough data for analytics",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "Add manual expenses in the Personal tab to populate category distribution charts here.",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.padding(horizontal = 24.dp)
-                    )
-                }
-            }
-        } else {
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                // Circular Interactive Donut Chart item
-                item {
-                    Card(
-                        shape = RoundedCornerShape(24.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f)
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(24.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Text(
-                                text = "Category Breakdown",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold
-                            )
-                            
-                            Spacer(modifier = Modifier.height(20.dp))
-
-                            // Donut Chart drawing inside a canvas!
-                            Box(
-                                modifier = Modifier.size(180.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Canvas(modifier = Modifier.fillMaxSize()) {
-                                    var startAngle = -90f
-                                    categoryMap.forEach { (cat, amount) ->
-                                        val sweepAngle = ((amount / totalPersonal) * 360f).toFloat()
-                                        drawArc(
-                                            color = getCategoryColor(cat),
-                                            startAngle = startAngle,
-                                            sweepAngle = sweepAngle,
-                                            useCenter = false,
-                                            style = Stroke(width = 24.dp.toPx(), cap = StrokeCap.Round)
-                                        )
-                                        startAngle += sweepAngle
-                                    }
-                                }
-
-                                // Center Total display
-                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                    Text(
-                                        text = "Total Spent",
-                                        style = MaterialTheme.typography.bodySmall,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.8f)
-                                    )
-                                    Text(
-                                        text = "₹${String.format(Locale.US, "%.0f", totalPersonal)}",
-                                        style = MaterialTheme.typography.headlineMedium,
-                                        fontWeight = FontWeight.Bold,
-                                        color = MaterialTheme.colorScheme.onSurface
-                                    )
-                                }
-                            }
-
-                            Spacer(modifier = Modifier.height(20.dp))
-
-                            // Legend chips rows
-                            FlowRow(
-                                modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.Center,
-                                maxItemsInEachRow = 3
-                            ) {
-                                categoryMap.forEach { (category, amount) ->
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier.padding(6.dp)
-                                    ) {
-                                        Box(
-                                            modifier = Modifier
-                                                .size(10.dp)
-                                                .background(getCategoryColor(category), CircleShape)
-                                        )
-                                        Spacer(modifier = Modifier.width(6.dp))
-                                        Text(
-                                            text = "$category (${String.format(Locale.US, "%.0f", (amount / totalPersonal) * 100)}%)",
-                                            fontSize = 11.sp,
-                                            fontWeight = FontWeight.Medium,
-                                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Detailed Progress List
-                item {
-                    Card(
-                        shape = RoundedCornerShape(20.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f)
-                        ),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Column(modifier = Modifier.padding(16.dp)) {
-                            Text(
-                                text = "Analytical Breakdown",
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier.padding(bottom = 12.dp)
-                            )
-
-                            categoryMap.forEach { (cat, amount) ->
-                                val pct = (amount / totalPersonal).toFloat()
-                                Column(modifier = Modifier.padding(vertical = 6.dp)) {
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Row(verticalAlignment = Alignment.CenterVertically) {
-                                            Icon(
-                                                imageVector = getCategoryIcon(cat),
-                                                contentDescription = cat,
-                                                tint = getCategoryColor(cat),
-                                                modifier = Modifier.size(18.dp)
-                                            )
-                                            Spacer(modifier = Modifier.width(6.dp))
-                                            Text(text = cat, fontWeight = FontWeight.Medium, fontSize = 14.sp)
-                                        }
-                                        Text(
-                                            text = "₹${String.format(Locale.US, "%.2f", amount)} (${String.format(Locale.US, "%.0f", pct * 100)}%)",
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 13.sp
-                                        )
-                                    }
-                                    Spacer(modifier = Modifier.height(4.dp))
-                                    LinearProgressIndicator(
-                                        progress = { pct },
-                                        color = getCategoryColor(cat),
-                                        trackColor = MaterialTheme.colorScheme.surfaceVariant,
-                                        strokeCap = StrokeCap.Round,
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .height(8.dp)
-                                            .clip(CircleShape)
-                                    )
-                                }
-                            }
-                        }
-                    }
                 }
             }
         }
     }
 }
 
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-fun FlowRow(
-    modifier: Modifier = Modifier,
-    horizontalArrangement: Arrangement.Horizontal = Arrangement.Start,
-    maxItemsInEachRow: Int = Int.MAX_VALUE,
-    content: @Composable () -> Unit
-) {
-    androidx.compose.foundation.layout.FlowRow(
-        modifier = modifier,
-        horizontalArrangement = horizontalArrangement,
-        maxItemsInEachRow = maxItemsInEachRow
-    ) {
-        content()
-    }
-}
-
-// ==========================================
-// FORM DIALOGS IMPLEMENTATIONS
-// ==========================================
+// =========================================================================
+// ADD PERSONAL EXPENSE DIALOG
+// =========================================================================
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddPersonalExpenseDialog(
-    categories: List<String>,
-    onDismiss: () -> Unit,
-    onConfirm: (Double, String, String) -> Unit
+    viewModel: ExpenseViewModel,
+    onDismiss: () -> Unit
 ) {
-    var amountStr by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-    var selectedCategory by remember { mutableStateOf(categories[0]) }
-    var expanded by remember { mutableStateOf(false) }
+    var amount by remember { mutableStateOf("") }
+    var selectedCategory by remember { mutableStateOf(viewModel.categories.first()) }
+    var dropdownExpanded by remember { mutableStateOf(false) }
+    var errorText by remember { mutableStateOf<String?>(null) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Log Personal Expense") },
+        title = { Text("Add Personal Expense", fontWeight = FontWeight.Bold) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                OutlinedTextField(
-                    value = amountStr,
-                    onValueChange = { amountStr = it },
-                    label = { Text("Amount (₹)") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("add_expense_amount_input")
-                )
-
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
                     label = { Text("Description") },
+                    placeholder = { Text("e.g. Starbucks Latte") },
                     singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("add_expense_description_input")
+                    modifier = Modifier.fillMaxWidth().testTag("input_expense_desc")
                 )
 
-                // Category dropdown menu
+                OutlinedTextField(
+                    value = amount,
+                    onValueChange = {
+                        amount = it
+                        errorText = null
+                    },
+                    label = { Text("Amount ($)") },
+                    placeholder = { Text("0.00") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    singleLine = true,
+                    isError = errorText != null,
+                    supportingText = errorText?.let { { Text(it) } },
+                    modifier = Modifier.fillMaxWidth().testTag("input_expense_amount")
+                )
+
                 ExposedDropdownMenuBox(
-                    expanded = expanded,
-                    onExpandedChange = { expanded = !expanded }
+                    expanded = dropdownExpanded,
+                    onExpandedChange = { dropdownExpanded = !dropdownExpanded }
                 ) {
                     OutlinedTextField(
                         value = selectedCategory,
                         onValueChange = {},
                         readOnly = true,
                         label = { Text("Category") },
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                        modifier = Modifier
-                            .menuAnchor()
-                            .fillMaxWidth()
-                            .testTag("add_expense_category_dropdown")
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = dropdownExpanded) },
+                        leadingIcon = {
+                            Icon(
+                                getCategoryIcon(selectedCategory),
+                                contentDescription = null,
+                                tint = getCategoryColor(selectedCategory)
+                            )
+                        },
+                        modifier = Modifier.menuAnchor().fillMaxWidth()
                     )
+
                     ExposedDropdownMenu(
-                        expanded = expanded,
-                        onDismissRequest = { expanded = false }
+                        expanded = dropdownExpanded,
+                        onDismissRequest = { dropdownExpanded = false }
                     ) {
-                        categories.forEach { category ->
+                        viewModel.categories.forEach { cat ->
                             DropdownMenuItem(
-                                text = { Text(category) },
+                                text = { Text(cat) },
+                                leadingIcon = {
+                                    Icon(
+                                        getCategoryIcon(cat),
+                                        contentDescription = null,
+                                        tint = getCategoryColor(cat)
+                                    )
+                                },
                                 onClick = {
-                                    selectedCategory = category
-                                    expanded = false
+                                    selectedCategory = cat
+                                    dropdownExpanded = false
                                 }
                             )
                         }
@@ -1999,105 +1595,407 @@ fun AddPersonalExpenseDialog(
         confirmButton = {
             Button(
                 onClick = {
-                    val amount = amountStr.toDoubleOrNull() ?: 0.0
-                    if (amount > 0) {
-                        onConfirm(amount, selectedCategory, description)
+                    val parsed = amount.toDoubleOrNull()
+                    if (parsed == null || parsed <= 0) {
+                        errorText = "Enter a valid amount"
+                    } else {
+                        viewModel.addPersonalExpense(
+                            amount = parsed,
+                            description = description,
+                            category = selectedCategory
+                        )
+                        onDismiss()
                     }
                 },
-                modifier = Modifier.testTag("add_expense_submit_btn")
+                modifier = Modifier.testTag("submit_add_expense")
             ) {
-                Text("Confirm")
+                Text("Add Expense")
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
-            }
+            TextButton(onClick = onDismiss) { Text("Cancel") }
         }
     )
+}
+
+// =========================================================================
+// GROUPS / SPLITWISE FOLDERS TAB
+// =========================================================================
+
+@Composable
+fun GroupFoldersTab(viewModel: ExpenseViewModel) {
+    val folders by viewModel.allFolders.collectAsStateWithLifecycle()
+    var showCreateDialog by remember { mutableStateOf(false) }
+    var showJoinDialog by remember { mutableStateOf(false) }
+
+    LazyColumn(
+        modifier = Modifier.fillMaxSize().testTag("group_folders_tab"),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        item {
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Text(
+                            text = "Splitwise Group Folders",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Share expenses with friends and track splits",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+        }
+
+        item {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Button(
+                    onClick = { showCreateDialog = true },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.weight(1f).testTag("btn_create_folder")
+                ) {
+                    Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text("New Group")
+                }
+
+                OutlinedButton(
+                    onClick = { showJoinDialog = true },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.weight(1f).testTag("btn_join_folder")
+                ) {
+                    Icon(Icons.Default.Group, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text("Join Code")
+                }
+            }
+        }
+
+        if (folders.isEmpty()) {
+            item {
+                Box(
+                    modifier = Modifier.fillMaxWidth().padding(top = 40.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "No shared groups yet. Create or join one!",
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        } else {
+            items(folders, key = { it.id }) { folder ->
+                FolderCard(
+                    folder = folder,
+                    onClick = { viewModel.selectFolder(folder) }
+                )
+            }
+        }
+
+        item { Spacer(modifier = Modifier.height(72.dp)) }
+    }
+
+    if (showCreateDialog) {
+        CreateFolderDialog(
+            onDismiss = { showCreateDialog = false },
+            onCreate = { name, members ->
+                viewModel.createFolder(name, members)
+                showCreateDialog = false
+            }
+        )
+    }
+
+    if (showJoinDialog) {
+        JoinFolderDialog(
+            viewModel = viewModel,
+            onDismiss = { showJoinDialog = false }
+        )
+    }
+}
+
+@Composable
+fun FolderCard(folder: Folder, onClick: () -> Unit) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        modifier = Modifier.fillMaxWidth().clickable(onClick = onClick)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    modifier = Modifier.size(44.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            imageVector = Icons.Default.Group,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.secondary
+                        )
+                    }
+                }
+                Column {
+                    Text(
+                        text = folder.name,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Code: ${folder.id} • ${folder.members}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FolderDetailScreen(
+    folder: Folder,
+    viewModel: ExpenseViewModel,
+    onBack: () -> Unit
+) {
+    val expenses by viewModel.selectedFolderExpenses.collectAsStateWithLifecycle()
+    val memberList = remember(folder.members) {
+        folder.members.split(",").map { it.trim() }.filter { it.isNotBlank() }
+    }
+    val settlements = remember(expenses, memberList) {
+        viewModel.calculateFolderSettlements(expenses, memberList)
+    }
+    val totalFolderAmount = remember(expenses) { expenses.sumOf { it.amount } }
+
+    var showAddFolderExpense by remember { mutableStateOf(false) }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(folder.name, fontWeight = FontWeight.Bold) },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                    }
+                }
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { showAddFolderExpense = true },
+                containerColor = MaterialTheme.colorScheme.secondary
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "Add Shared Expense")
+            }
+        }
+    ) { padding ->
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().padding(padding),
+            contentPadding = PaddingValues(16.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
+        ) {
+            item {
+                Card(
+                    shape = RoundedCornerShape(18.dp),
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text(
+                            text = "Total Group Spending",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                        )
+                        Text(
+                            text = "$${String.format(Locale.US, "%.2f", totalFolderAmount)}",
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                        )
+                        Text(
+                            text = "Members: ${folder.members}",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                        )
+                    }
+                }
+            }
+
+            // Settlements
+            if (settlements.isNotEmpty()) {
+                item {
+                    Text(
+                        text = "Suggested Settlements",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+                items(settlements) { trans ->
+                    Card(
+                        shape = RoundedCornerShape(12.dp),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(12.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = "${trans.from} owes ${trans.to}",
+                                fontWeight = FontWeight.SemiBold
+                            )
+                            Text(
+                                text = "$${String.format(Locale.US, "%.2f", trans.amount)}",
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                    }
+                }
+            }
+
+            item {
+                Text(
+                    text = "Group Expenses (${expenses.size})",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
+            items(expenses) { exp ->
+                Card(
+                    shape = RoundedCornerShape(14.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(14.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column {
+                            Text(exp.description, fontWeight = FontWeight.Bold)
+                            Text(
+                                "Paid by ${exp.paidBy} • ${exp.category}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                        Text(
+                            "$${String.format(Locale.US, "%.2f", exp.amount)}",
+                            fontWeight = FontWeight.Bold,
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    if (showAddFolderExpense) {
+        AddFolderExpenseDialog(
+            folderId = folder.id,
+            members = memberList,
+            viewModel = viewModel,
+            onDismiss = { showAddFolderExpense = false }
+        )
+    }
 }
 
 @Composable
 fun CreateFolderDialog(
     onDismiss: () -> Unit,
-    onConfirm: (String, String) -> Unit
+    onCreate: (String, List<String>) -> Unit
 ) {
-    var name by remember { mutableStateOf("") }
-    var friends by remember { mutableStateOf("") }
+    var groupName by remember { mutableStateOf("") }
+    var membersInput by remember { mutableStateOf("") }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Create Collaborative Folder") },
+        title = { Text("Create Group Folder", fontWeight = FontWeight.Bold) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(
-                    text = "A shared folder stores transactions for specific trips or groups (e.g. going on a trip with 4 people). Everyone can add expense details, and the system automatically splits the bill.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                OutlinedTextField(
+                    value = groupName,
+                    onValueChange = { groupName = it },
+                    label = { Text("Group Name") },
+                    placeholder = { Text("e.g. Hawaii Trip 2026") },
+                    modifier = Modifier.fillMaxWidth()
                 )
                 OutlinedTextField(
-                    value = name,
-                    onValueChange = { name = it },
-                    label = { Text("Trip Folder Name") },
-                    placeholder = { Text("e.g. Goa Trip 2026") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("create_folder_name_input")
-                )
-
-                OutlinedTextField(
-                    value = friends,
-                    onValueChange = { friends = it },
-                    label = { Text("Friend Names (comma-separated)") },
-                    placeholder = { Text("Alice, Bob, Charlie") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("create_folder_members_input")
+                    value = membersInput,
+                    onValueChange = { membersInput = it },
+                    label = { Text("Other Members (comma separated)") },
+                    placeholder = { Text("Alex, Maya, David") },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         },
         confirmButton = {
             Button(
                 onClick = {
-                    if (name.isNotBlank()) {
-                        onConfirm(name, friends)
+                    if (groupName.isNotBlank()) {
+                        val list = membersInput.split(",").map { it.trim() }
+                        onCreate(groupName, list)
                     }
-                },
-                modifier = Modifier.testTag("create_folder_submit_btn")
-            ) {
-                Text("Create")
-            }
+                }
+            ) { Text("Create") }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
-            }
+            TextButton(onClick = onDismiss) { Text("Cancel") }
         }
     )
 }
 
 @Composable
 fun JoinFolderDialog(
-    onDismiss: () -> Unit,
-    onConfirm: (String) -> Unit
+    viewModel: ExpenseViewModel,
+    onDismiss: () -> Unit
 ) {
     var code by remember { mutableStateOf("") }
+    var error by remember { mutableStateOf<String?>(null) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Join Shared Folder") },
+        title = { Text("Join Group Folder", fontWeight = FontWeight.Bold) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text(
-                    text = "Enter the specific folder code (e.g. TRIP-123456) shared by your friends to sync and access the shared database.",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(
                     value = code,
-                    onValueChange = { code = it },
-                    label = { Text("Trip Code") },
-                    placeholder = { Text("TRIP-XXXXXX") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("join_code_input")
+                    onValueChange = {
+                        code = it.uppercase()
+                        error = null
+                    },
+                    label = { Text("Group Code") },
+                    placeholder = { Text("e.g. TRIP-2026") },
+                    isError = error != null,
+                    supportingText = error?.let { { Text(it) } },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         },
@@ -2105,18 +2003,17 @@ fun JoinFolderDialog(
             Button(
                 onClick = {
                     if (code.isNotBlank()) {
-                        onConfirm(code)
+                        viewModel.joinFolderWithCode(
+                            code = code,
+                            onSuccess = onDismiss,
+                            onError = { error = it }
+                        )
                     }
-                },
-                modifier = Modifier.testTag("join_code_submit")
-            ) {
-                Text("Join & Sync")
-            }
+                }
+            ) { Text("Join") }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
-            }
+            TextButton(onClick = onDismiss) { Text("Cancel") }
         }
     )
 }
@@ -2124,301 +2021,769 @@ fun JoinFolderDialog(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddFolderExpenseDialog(
-    folder: Folder,
-    categories: List<String>,
-    onDismiss: () -> Unit,
-    onConfirm: (Double, String, String, String) -> Unit
+    folderId: String,
+    members: List<String>,
+    viewModel: ExpenseViewModel,
+    onDismiss: () -> Unit
 ) {
-    var amountStr by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
-    var selectedCategory by remember { mutableStateOf(categories[0]) }
-    var expandedCategory by remember { mutableStateOf(false) }
-    
-    val members = folder.getMemberList()
-    var selectedPayer by remember { mutableStateOf("Me") }
-    var expandedPayer by remember { mutableStateOf(false) }
+    var amount by remember { mutableStateOf("") }
+    var paidBy by remember { mutableStateOf(members.firstOrNull() ?: "You") }
+    var category by remember { mutableStateOf(viewModel.categories.first()) }
+    var errorText by remember { mutableStateOf<String?>(null) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Add Trip Expense") },
+        title = { Text("Add Shared Expense", fontWeight = FontWeight.Bold) },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                OutlinedTextField(
-                    value = amountStr,
-                    onValueChange = { amountStr = it },
-                    label = { Text("Amount (₹)") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth()
-                )
-
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
                     label = { Text("Description") },
-                    singleLine = true,
                     modifier = Modifier.fillMaxWidth()
                 )
-
-                // Payer Selection dropdown
-                ExposedDropdownMenuBox(
-                    expanded = expandedPayer,
-                    onExpandedChange = { expandedPayer = !expandedPayer }
-                ) {
-                    OutlinedTextField(
-                        value = selectedPayer,
-                        onValueChange = {},
-                        readOnly = true,
-                        label = { Text("Who paid for this?") },
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedPayer) },
-                        modifier = Modifier
-                            .menuAnchor()
-                            .fillMaxWidth()
-                    )
-                    ExposedDropdownMenu(
-                        expanded = expandedPayer,
-                        onDismissRequest = { expandedPayer = false }
-                    ) {
-                        members.forEach { member ->
-                            DropdownMenuItem(
-                                text = { Text(member) },
-                                onClick = {
-                                    selectedPayer = member
-                                    expandedPayer = false
-                                }
-                            )
-                        }
-                    }
-                }
-
-                // Category selection dropdown
-                ExposedDropdownMenuBox(
-                    expanded = expandedCategory,
-                    onExpandedChange = { expandedCategory = !expandedCategory }
-                ) {
-                    OutlinedTextField(
-                        value = selectedCategory,
-                        onValueChange = {},
-                        readOnly = true,
-                        label = { Text("Category") },
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedCategory) },
-                        modifier = Modifier
-                            .menuAnchor()
-                            .fillMaxWidth()
-                    )
-                    ExposedDropdownMenu(
-                        expanded = expandedCategory,
-                        onDismissRequest = { expandedCategory = false }
-                    ) {
-                        categories.forEach { category ->
-                            DropdownMenuItem(
-                                text = { Text(category) },
-                                onClick = {
-                                    selectedCategory = category
-                                    expandedCategory = false
-                                }
-                            )
-                        }
-                    }
-                }
+                OutlinedTextField(
+                    value = amount,
+                    onValueChange = { amount = it },
+                    label = { Text("Amount ($)") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.fillMaxWidth()
+                )
+                OutlinedTextField(
+                    value = paidBy,
+                    onValueChange = { paidBy = it },
+                    label = { Text("Paid By") },
+                    modifier = Modifier.fillMaxWidth()
+                )
             }
         },
         confirmButton = {
             Button(
                 onClick = {
-                    val amount = amountStr.toDoubleOrNull() ?: 0.0
-                    if (amount > 0) {
-                        onConfirm(amount, selectedCategory, description, selectedPayer)
+                    val parsed = amount.toDoubleOrNull()
+                    if (parsed != null && parsed > 0) {
+                        viewModel.addFolderExpense(
+                            folderId = folderId,
+                            amount = parsed,
+                            description = description,
+                            category = category,
+                            paidBy = paidBy
+                        )
+                        onDismiss()
+                    } else {
+                        errorText = "Invalid amount"
                     }
                 }
-            ) {
-                Text("Record")
-            }
+            ) { Text("Save") }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
-            }
+            TextButton(onClick = onDismiss) { Text("Cancel") }
         }
     )
+}
+
+// =========================================================================
+// DEBTS TRACKER TAB
+// =========================================================================
+
+@Composable
+fun DebtTrackerTab(viewModel: ExpenseViewModel) {
+    val debts by viewModel.allDebts.collectAsStateWithLifecycle()
+    var showAddDebtDialog by remember { mutableStateOf(false) }
+
+    val totalPending = remember(debts) {
+        debts.filter { !it.isSettled }.sumOf { it.amount }
+    }
+
+    LazyColumn(
+        modifier = Modifier.fillMaxSize().testTag("debt_tracker_tab"),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp)
+    ) {
+        item {
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(20.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column {
+                        Text(
+                            text = "Pending Receivables / Debts",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
+                        Text(
+                            text = "$${String.format(Locale.US, "%.2f", totalPending)}",
+                            style = MaterialTheme.typography.headlineLarge,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
+                    }
+
+                    Button(
+                        onClick = { showAddDebtDialog = true },
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary)
+                    ) {
+                        Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("Add Debt")
+                    }
+                }
+            }
+        }
+
+        if (debts.isEmpty()) {
+            item {
+                Box(
+                    modifier = Modifier.fillMaxWidth().padding(top = 40.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("No debts or IOUs recorded.", color = MaterialTheme.colorScheme.onSurfaceVariant)
+                }
+            }
+        } else {
+            items(debts, key = { it.id }) { debt ->
+                DebtCard(
+                    debt = debt,
+                    onToggleSettle = { viewModel.settleDebt(debt) },
+                    onDelete = { viewModel.deleteDebt(debt) }
+                )
+            }
+        }
+
+        item { Spacer(modifier = Modifier.height(72.dp)) }
+    }
+
+    if (showAddDebtDialog) {
+        AddDebtDialog(
+            onDismiss = { showAddDebtDialog = false },
+            onAdd = { person, amt, desc ->
+                viewModel.addDebt(person, amt, desc)
+                showAddDebtDialog = false
+            }
+        )
+    }
+}
+
+@Composable
+fun DebtCard(
+    debt: Debt,
+    onToggleSettle: () -> Unit,
+    onDelete: () -> Unit
+) {
+    Card(
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = if (debt.isSettled) MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f) else MaterialTheme.colorScheme.surface
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth().padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = debt.personName,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = debt.description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(
+                    text = "$${String.format(Locale.US, "%.2f", debt.amount)}",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = if (debt.isSettled) Color(0xFF10B981) else MaterialTheme.colorScheme.error
+                )
+
+                Button(
+                    onClick = onToggleSettle,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (debt.isSettled) Color(0xFF10B981) else MaterialTheme.colorScheme.primaryContainer
+                    )
+                ) {
+                    Text(
+                        text = if (debt.isSettled) "Settled" else "Settle",
+                        color = if (debt.isSettled) Color.White else MaterialTheme.colorScheme.primary,
+                        fontSize = 12.sp
+                    )
+                }
+
+                IconButton(onClick = onDelete) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Delete",
+                        tint = MaterialTheme.colorScheme.error.copy(alpha = 0.7f),
+                        modifier = Modifier.size(18.dp)
+                    )
+                }
+            }
+        }
+    }
 }
 
 @Composable
 fun AddDebtDialog(
     onDismiss: () -> Unit,
-    onConfirm: (String, Double, String, Boolean) -> Unit
+    onAdd: (String, Double, String) -> Unit
 ) {
-    var name by remember { mutableStateOf("") }
-    var amountStr by remember { mutableStateOf("") }
-    var description by remember { mutableStateOf("") }
-    var isLent by remember { mutableStateOf(true) } // true = Lent (Given), false = Borrowed (Taken)
+    var person by remember { mutableStateOf("") }
+    var amount by remember { mutableStateOf("") }
+    var desc by remember { mutableStateOf("") }
+    var err by remember { mutableStateOf<String?>(null) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Record Money Log") },
+        title = { Text("Record Lent / Borrowed Amount") },
         text = {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                // Type selector
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Button(
-                        onClick = { isLent = true },
-                        modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = if (isLent) Color(0xFF2E7D32) else MaterialTheme.colorScheme.surfaceVariant,
-                            contentColor = if (isLent) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        Text("I Lent Money")
-                    }
-
-                    Button(
-                        onClick = { isLent = false },
-                        modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = if (!isLent) Color(0xFFC62828) else MaterialTheme.colorScheme.surfaceVariant,
-                            contentColor = if (!isLent) Color.White else MaterialTheme.colorScheme.onSurfaceVariant
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        Text("I Borrowed")
-                    }
-                }
-
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 OutlinedTextField(
-                    value = name,
-                    onValueChange = { name = it },
-                    label = { Text("Person's Name") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("add_debt_person_input")
+                    value = person,
+                    onValueChange = { person = it },
+                    label = { Text("Person Name") },
+                    modifier = Modifier.fillMaxWidth()
                 )
-
                 OutlinedTextField(
-                    value = amountStr,
-                    onValueChange = { amountStr = it },
-                    label = { Text("Amount (₹)") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("add_debt_amount_input")
+                    value = amount,
+                    onValueChange = { amount = it },
+                    label = { Text("Amount ($)") },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.fillMaxWidth()
                 )
-
                 OutlinedTextField(
-                    value = description,
-                    onValueChange = { description = it },
-                    label = { Text("Description") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("add_debt_description_input")
+                    value = desc,
+                    onValueChange = { desc = it },
+                    label = { Text("Reason / Note") },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         },
         confirmButton = {
             Button(
                 onClick = {
-                    val amount = amountStr.toDoubleOrNull() ?: 0.0
-                    if (name.isNotBlank() && amount > 0) {
-                        onConfirm(name, amount, description, isLent)
+                    val p = amount.toDoubleOrNull()
+                    if (person.isNotBlank() && p != null && p > 0) {
+                        onAdd(person, p, desc)
+                    } else {
+                        err = "Check fields"
                     }
-                },
-                modifier = Modifier.testTag("add_debt_submit_btn")
-            ) {
-                Text("Save")
-            }
+                }
+            ) { Text("Save") }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) {
-                Text("Cancel")
-            }
+            TextButton(onClick = onDismiss) { Text("Cancel") }
         }
     )
 }
 
-// ==========================================
-// UTILS & STYLE ADAPTERS
-// ==========================================
+// =========================================================================
+// ANALYTICS & REPORTS TAB
+// =========================================================================
 
-fun formatTimestamp(timestamp: Long): String {
-    val sdf = SimpleDateFormat("MMM d, yyyy", Locale.US)
-    return sdf.format(Date(timestamp))
-}
+@Composable
+fun AnalyticsTab(
+    viewModel: ExpenseViewModel,
+    onOpenExport: () -> Unit = {},
+    onOpenWorkSample: () -> Unit = {}
+) {
+    val context = LocalContext.current
+    val expenses by viewModel.personalExpenses.collectAsStateWithLifecycle()
+    val budgetProgress by viewModel.budgetProgressList.collectAsStateWithLifecycle()
+    val allFolders by viewModel.allFolders.collectAsStateWithLifecycle()
+    val selectedMonthYear by viewModel.selectedMonthYear.collectAsStateWithLifecycle()
 
-fun getCategoryIcon(category: String): ImageVector {
-    return when (category) {
-        "Food" -> Icons.Default.Restaurant
-        "Transport" -> Icons.Default.DirectionsCar
-        "Lodging" -> Icons.Default.Hotel
-        "Entertainment" -> Icons.Default.LocalPlay
-        "Shopping" -> Icons.Default.LocalMall
-        "Bills" -> Icons.Default.Receipt
-        "Health" -> Icons.Default.HealthAndSafety
-        else -> Icons.Default.AttachMoney
+    val total = remember(expenses) { expenses.sumOf { it.amount } }
+    val avgTransaction = remember(expenses) { if (expenses.isNotEmpty()) total / expenses.size else 0.0 }
+    val maxTransaction = remember(expenses) { expenses.maxOfOrNull { it.amount } ?: 0.0 }
+    val overBudgetCount = remember(budgetProgress) { budgetProgress.count { it.status == BudgetHealth.EXCEEDED } }
+
+    val categoryTotals = remember(expenses) {
+        expenses.groupBy { it.category }
+            .mapValues { it.value.sumOf { exp -> exp.amount } }
+            .toList()
+            .sortedByDescending { it.second }
     }
-}
 
-fun getCategoryColor(category: String): Color {
-    return when (category) {
-        "Food" -> Color(0xFFEF5350)        // Red
-        "Transport" -> Color(0xFF42A5F5)   // Blue
-        "Lodging" -> Color(0xFFAB47BC)     // Purple
-        "Entertainment" -> Color(0xFFFFCA28) // Amber
-        "Shopping" -> Color(0xFF26A69A)    // Teal
-        "Bills" -> Color(0xFFFF7043)       // Orange
-        "Health" -> Color(0xFF66BB6A)      // Green
-        else -> Color(0xFF78909C)          // Gray
+    LazyColumn(
+        modifier = Modifier.fillMaxSize().testTag("analytics_tab"),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Analytics & Export Header Card
+        item {
+            Card(
+                shape = RoundedCornerShape(22.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column {
+                            Text(
+                                text = "Data Analysis & Spending Intelligence",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "Total Volume: $${String.format(Locale.US, "%.2f", total)} across ${expenses.size} entries",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        }
+                    }
+
+                    // Action buttons
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Button(
+                            onClick = onOpenExport,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1f).testTag("analytics_export_csv_btn")
+                        ) {
+                            Icon(Icons.Default.FileDownload, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Export CSV", fontSize = 12.sp)
+                        }
+
+                        Button(
+                            onClick = {
+                                com.example.util.PdfWorkSampleExporter.generateAndSharePdf(
+                                    context = context,
+                                    expenses = expenses,
+                                    budgetProgressList = budgetProgress,
+                                    folders = allFolders
+                                )
+                            },
+                            shape = RoundedCornerShape(12.dp),
+                            colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
+                            modifier = Modifier.weight(1.15f).testTag("analytics_export_pdf_btn")
+                        ) {
+                            Icon(Icons.Default.Share, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("PDF Sample", fontSize = 12.sp)
+                        }
+
+                        OutlinedButton(
+                            onClick = onOpenWorkSample,
+                            shape = RoundedCornerShape(12.dp),
+                            modifier = Modifier.weight(1.05f).testTag("analytics_work_sample_btn")
+                        ) {
+                            Icon(Icons.Default.Assessment, contentDescription = null, modifier = Modifier.size(16.dp))
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text("Portfolio", fontSize = 12.sp)
+                        }
+                    }
+                }
+            }
+        }
+
+        // Data Analyst KPI Metrics
+        item {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.35f)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text(
+                        text = "Statistical Summary & Pacing",
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        MetricCard(title = "Mean Txn", value = "$${String.format(Locale.US, "%.2f", avgTransaction)}", modifier = Modifier.weight(1f))
+                        MetricCard(title = "Max Single", value = "$${String.format(Locale.US, "%.2f", maxTransaction)}", modifier = Modifier.weight(1f))
+                        MetricCard(title = "Over Budget", value = "$overBudgetCount Categories", modifier = Modifier.weight(1.2f))
+                    }
+                }
+            }
+        }
+
+        // Quick CSV Export Actions
+        item {
+            Card(
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text(
+                        text = "Quick Data Exports (RFC 4180 CSV)",
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Export structured tabular files ready for Pandas, SQL import, Excel, Tableau, or Power BI data pipelines.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+
+                    // Export Transaction History
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Transaction History", fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
+                            Text("${expenses.size} rows with timestamps & categories", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            IconButton(onClick = {
+                                val csv = CsvExporter.generateTransactionsCsv(expenses, allFolders)
+                                CsvExporter.copyToClipboard(context, "transactions.csv", csv)
+                            }) {
+                                Icon(Icons.Default.ContentCopy, contentDescription = "Copy Transactions CSV", modifier = Modifier.size(18.dp))
+                            }
+                            IconButton(onClick = {
+                                val csv = CsvExporter.generateTransactionsCsv(expenses, allFolders)
+                                CsvExporter.exportAndShareCsv(context, "transactions_history", csv)
+                            }) {
+                                Icon(Icons.Default.Share, contentDescription = "Share Transactions CSV", modifier = Modifier.size(18.dp))
+                            }
+                        }
+                    }
+
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+
+                    // Export Budget Status & Variance
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Budget Status & Variance", fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
+                            Text("${budgetProgress.size} targets with spent & health status", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            IconButton(onClick = {
+                                val csv = CsvExporter.generateBudgetStatusCsv(budgetProgress, selectedMonthYear)
+                                CsvExporter.copyToClipboard(context, "budget_status.csv", csv)
+                            }) {
+                                Icon(Icons.Default.ContentCopy, contentDescription = "Copy Budget CSV", modifier = Modifier.size(18.dp))
+                            }
+                            IconButton(onClick = {
+                                val csv = CsvExporter.generateBudgetStatusCsv(budgetProgress, selectedMonthYear)
+                                CsvExporter.exportAndShareCsv(context, "budget_status_variance", csv)
+                            }) {
+                                Icon(Icons.Default.Share, contentDescription = "Share Budget CSV", modifier = Modifier.size(18.dp))
+                            }
+                        }
+                    }
+
+                    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.4f))
+
+                    // Export Analytical Mart
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text("Star-Schema Analytical Mart", fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
+                            Text("Denormalized facts joined with monthly targets", fontSize = 11.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                        Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            IconButton(onClick = {
+                                val csv = CsvExporter.generateDataAnalystMartCsv(expenses, budgetProgress, allFolders, selectedMonthYear)
+                                CsvExporter.copyToClipboard(context, "analyst_mart.csv", csv)
+                            }) {
+                                Icon(Icons.Default.ContentCopy, contentDescription = "Copy Mart CSV", modifier = Modifier.size(18.dp))
+                            }
+                            IconButton(onClick = {
+                                val csv = CsvExporter.generateDataAnalystMartCsv(expenses, budgetProgress, allFolders, selectedMonthYear)
+                                CsvExporter.exportAndShareCsv(context, "expense_analyst_mart", csv)
+                            }) {
+                                Icon(Icons.Default.Share, contentDescription = "Share Mart CSV", modifier = Modifier.size(18.dp))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        item {
+            Text(
+                text = "Category Distribution",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+        items(categoryTotals) { (cat, catTotal) ->
+            val fraction = if (total > 0) (catTotal / total).toFloat() else 0f
+            val pct = (fraction * 100).toInt()
+            val color = getCategoryColor(cat)
+
+            Card(
+                shape = RoundedCornerShape(14.dp),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Column(modifier = Modifier.padding(14.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Icon(getCategoryIcon(cat), contentDescription = null, tint = color, modifier = Modifier.size(20.dp))
+                            Text(cat, fontWeight = FontWeight.Bold)
+                        }
+                        Text(
+                            "$${String.format(Locale.US, "%.2f", catTotal)} ($pct%)",
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+
+                    LinearProgressIndicator(
+                        progress = { fraction },
+                        modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
+                        color = color,
+                        trackColor = MaterialTheme.colorScheme.surfaceVariant
+                    )
+                }
+            }
+        }
+
+        item { Spacer(modifier = Modifier.height(72.dp)) }
     }
 }
 
 @Composable
-fun HighDensityHeader(
-    subtitle: String,
-    title: String,
-    initials: String = "RS"
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color(0xFFFDF7FF))
-            .padding(horizontal = 16.dp, vertical = 12.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+fun MetricCard(title: String, value: String, modifier: Modifier = Modifier) {
+    Surface(
+        shape = RoundedCornerShape(10.dp),
+        color = MaterialTheme.colorScheme.surface,
+        tonalElevation = 2.dp,
+        modifier = modifier
     ) {
-        Column {
-            Text(
-                text = subtitle.uppercase(),
-                color = Color(0xFF6750A4),
-                fontSize = 11.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = 1.sp
-            )
-            Text(
-                text = title,
-                color = Color(0xFF1D1B20),
-                fontSize = 24.sp,
-                fontWeight = FontWeight.Bold,
-                letterSpacing = (-0.5).sp
-            )
-        }
-        
-        Box(
-            modifier = Modifier
-                .size(42.dp)
-                .background(
-                    Brush.linearGradient(
-                        colors = listOf(
-                            Color(0xFFEADDFF),
-                            Color(0xFFD0BCFF)
-                        )
-                    ),
-                    CircleShape
-                ),
-            contentAlignment = Alignment.Center
+        Column(
+            modifier = Modifier.padding(10.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = initials,
-                color = Color(0xFF21005D),
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
-            )
+            Text(title, style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(value, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
         }
     }
+}
+
+// =========================================================================
+// OTP LOGIN & USER PROFILE DIALOGS
+// =========================================================================
+
+@Composable
+fun OtpLoginDialog(
+    viewModel: ExpenseViewModel,
+    onDismiss: () -> Unit
+) {
+    val otpState by viewModel.otpState.collectAsStateWithLifecycle()
+    var phoneInput by remember { mutableStateOf(otpState.phoneNumber) }
+    var enteredOtp by remember { mutableStateOf("") }
+    var localError by remember { mutableStateOf<String?>(null) }
+
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = if (otpState.isOtpSent) "Enter Verification Code" else "Mobile Login with OTP",
+                fontWeight = FontWeight.Bold
+            )
+        },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                if (!otpState.isOtpSent) {
+                    Text(
+                        text = "Enter your phone number to receive a secure one-time verification code.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    OutlinedTextField(
+                        value = phoneInput,
+                        onValueChange = {
+                            phoneInput = it
+                            localError = null
+                        },
+                        label = { Text("Phone Number") },
+                        placeholder = { Text("+1 (555) 000-0000") },
+                        leadingIcon = { Icon(Icons.Default.PhoneAndroid, contentDescription = null) },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+                        isError = localError != null,
+                        supportingText = localError?.let { { Text(it) } },
+                        modifier = Modifier.fillMaxWidth().testTag("phone_input")
+                    )
+                } else {
+                    Text(
+                        text = "Code sent to ${otpState.phoneNumber}. Check notification toast or use demo code: ${otpState.generatedOtp}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    OutlinedTextField(
+                        value = enteredOtp,
+                        onValueChange = {
+                            enteredOtp = it
+                            localError = null
+                        },
+                        label = { Text("6-Digit OTP") },
+                        placeholder = { Text("123456") },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        isError = localError != null,
+                        supportingText = localError?.let { { Text(it) } },
+                        modifier = Modifier.fillMaxWidth().testTag("otp_code_input")
+                    )
+                    TextButton(
+                        onClick = { viewModel.resendOtp {} }
+                    ) {
+                        Text("Resend Code")
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            if (!otpState.isOtpSent) {
+                Button(
+                    onClick = {
+                        viewModel.sendOtp(
+                            phoneNumber = phoneInput,
+                            onSuccess = {},
+                            onError = { localError = it }
+                        )
+                    },
+                    modifier = Modifier.testTag("send_otp_btn")
+                ) {
+                    Text("Send OTP")
+                }
+            } else {
+                Button(
+                    onClick = {
+                        viewModel.verifyOtp(
+                            enteredOtp = enteredOtp,
+                            onSuccess = onDismiss,
+                            onError = { localError = it }
+                        )
+                    },
+                    modifier = Modifier.testTag("verify_otp_btn")
+                ) {
+                    Text("Verify & Login")
+                }
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Cancel") }
+        }
+    )
+}
+
+@Composable
+fun UserProfileDialog(
+    userState: UserState,
+    onDismiss: () -> Unit,
+    onLogout: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("User Profile", fontWeight = FontWeight.Bold) },
+        text = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(64.dp)
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Text(
+                            text = userState.userAvatarInitials,
+                            color = MaterialTheme.colorScheme.onPrimary,
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+
+                Text(userState.name, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                Text(userState.phoneNumber.ifBlank { "Mobile User" }, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = onLogout,
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+            ) {
+                Text("Logout")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Close") }
+        }
+    )
+}
+
+// =========================================================================
+// HELPERS
+// =========================================================================
+
+fun getCategoryIcon(category: String): ImageVector {
+    return when (category.lowercase()) {
+        "food & dining", "food" -> Icons.Default.Fastfood
+        "groceries" -> Icons.Default.ShoppingCart
+        "shopping" -> Icons.Default.ShoppingBag
+        "transportation", "transport" -> Icons.Default.TrendingUp
+        "entertainment" -> Icons.Default.Movie
+        "utilities & bills", "utilities" -> Icons.Default.Receipt
+        "healthcare", "health" -> Icons.Default.LocalHospital
+        "travel" -> Icons.Default.Flight
+        "education" -> Icons.Default.School
+        else -> Icons.Default.AccountBalanceWallet
+    }
+}
+
+fun getCategoryColor(category: String): Color {
+    return when (category.lowercase()) {
+        "food & dining", "food" -> Color(0xFFEF4444)
+        "groceries" -> Color(0xFF10B981)
+        "shopping" -> Color(0xFFEC4899)
+        "transportation", "transport" -> Color(0xFF3B82F6)
+        "entertainment" -> Color(0xFF8B5CF6)
+        "utilities & bills", "utilities" -> Color(0xFFF59E0B)
+        "healthcare", "health" -> Color(0xFF14B8A6)
+        "travel" -> Color(0xFF06B6D4)
+        "education" -> Color(0xFF6366F1)
+        else -> Color(0xFF64748B)
+    }
+}
+
+fun formatTimestamp(timestamp: Long): String {
+    return SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date(timestamp))
 }

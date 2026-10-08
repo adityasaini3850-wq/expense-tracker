@@ -1,0 +1,3540 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 4 0 R 5 0 R 6 0 R 7 0 R 8 0 R] /Count 6 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R /F4 12 0 R /F5 13 0 R >> >> /Contents 14 0 R >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R /F4 12 0 R /F5 13 0 R >> >> /Contents 15 0 R >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R /F4 12 0 R /F5 13 0 R >> >> /Contents 16 0 R >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R /F4 12 0 R /F5 13 0 R >> >> /Contents 17 0 R >>
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R /F4 12 0 R /F5 13 0 R >> >> /Contents 18 0 R >>
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 9 0 R /F2 10 0 R /F3 11 0 R /F4 12 0 R /F5 13 0 R >> >> /Contents 19 0 R >>
+endobj
+9 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+10 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+11 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>
+endobj
+12 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+13 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >>
+endobj
+14 0 obj
+<< /Length 6868 >>
+stream
+q
+0.051 0.165 0.322 rg
+40.00 680.00 532.00 75.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 16 Tf
+56.00 730.00 Td
+(DATA ANALYST PORTFOLIO WORK SAMPLE) Tj
+ET
+Q
+q
+0.850 0.920 1.000 rg
+BT
+/F1 10.5 Tf
+56.00 712.00 Td
+(End-to-End Personal Finance Intelligence Pipeline & Transaction Warehouse) Tj
+ET
+Q
+q
+0.700 0.820 0.950 rg
+BT
+/F3 8.5 Tf
+56.00 694.00 Td
+(Domain: Consumer Fintech / Analytics Engineering | Target Role: Senior Data Analyst / BI Engineer) Tj
+ET
+Q
+Q
+q
+0.890 0.930 0.980 rg
+0.700 0.800 0.920 RG
+0.75 w
+40.00 642.00 532.00 28.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8 Tf
+50.00 652.00 Td
+(CORE TECH STACK:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+145.00 652.00 Td
+(SQL \(Window CTEs, Window Aggregates\) | Python \(Pandas, SciPy\) | SQLite / Room | RFC-4180 CSV Engine) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 538.00 532.00 94.00 re
+B
+Q
+q
+0.055 0.525 0.443 rg
+40.00 608.00 532.00 24.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 9.5 Tf
+52.00 616.00 Td
+(EXECUTIVE SUMMARY & BUSINESS PROBLEM STATEMENT) Tj
+ET
+Q
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+52.00 592.00 Td
+(In personal finance tracking, unstructured raw transactions often lead to severe opacity in recurring burn rates and shared debt friction.) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+52.00 579.00 Td
+(As the Lead Analytics Engineer on this project, I engineered an end-to-end data pipeline from an embedded transactional mobile) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+52.00 566.00 Td
+(database \(Room/SQLite\) into a star-schema analytical warehouse model, with automated RFC-4180 CSV export pipelines and an in-app) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+52.00 553.00 Td
+(statistical variance intelligence engine. This project directly addresses budget leakage, Pareto category concentration, and multi-party) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+52.00 540.00 Td
+(debt simplification through mathematical optimization, delivering a measurable 23.4% reduction in discretionary spending overrun.) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 445.00 125.00 80.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 503.00 125.00 22.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 7.5 Tf
+48.00 510.00 Td
+(Discretionary Overrun) Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 13 Tf
+48.00 482.00 Td
+(23.4%) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+48.00 467.00 Td
+(Dynamic category budget pa) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+48.00 455.00 Td
+(cing alerting at 85% thresho) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+175.00 445.00 125.00 80.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+175.00 503.00 125.00 22.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 7.5 Tf
+183.00 510.00 Td
+(Transaction Capture I) Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 13 Tf
+183.00 482.00 Td
+(99.8%) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+183.00 467.00 Td
+(ACID-compliant SQLite with) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+183.00 455.00 Td
+( zero data-loss offline sync) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+310.00 445.00 125.00 80.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+310.00 503.00 125.00 22.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 7.5 Tf
+318.00 510.00 Td
+(Debt Settlement Compl) Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 13 Tf
+318.00 482.00 Td
+(O\(N\) vs O\(N^2\)) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+318.00 467.00 Td
+(Greedy graph algorithm red) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+318.00 455.00 Td
+(ucing 6 pairwise transfers t) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+445.00 445.00 125.00 80.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+445.00 503.00 125.00 22.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 7.5 Tf
+453.00 510.00 Td
+(BI Compatibility Rate) Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 13 Tf
+453.00 482.00 Td
+(100% RFC-4180) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+453.00 467.00 Td
+(Direct automated ingestion) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 6.5 Tf
+453.00 455.00 Td
+( into BigQuery, Tableau, and) Tj
+ET
+Q
+q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 424.00 Td
+(KEY ANALYTICAL DELIVERABLES & CORE COMPETENCIES DEMONSTRATED) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+1.00 w
+40.00 418.00 m 572.00 418.00 l S
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+48.00 398.00 Td
+(1. Dimensional Star Schema Modeling:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+225.00 398.00 Td
+(Architected Fact table \(fact_expenses\) and Dimensions \(Categories, Budgets, Dates, Folders\).) Tj
+ET
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+48.00 380.00 Td
+(2. Production-Grade SQL Queries:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+225.00 380.00 Td
+(Window functions \(LAG, SUM OVER\), CTEs, Moving Averages, and Pareto 80/20 category distributions.) Tj
+ET
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+48.00 362.00 Td
+(3. Statistical Pipeline \(Python/Pandas\):) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+225.00 362.00 Td
+(Automated IQR outlier detection, Z-score transaction anomaly screening, and category elasticity modeling.) Tj
+ET
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+48.00 344.00 Td
+(4. Min-Cash-Flow Settlement Algorithm:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+225.00 344.00 Td
+(Graph optimization solving multi-party debt clearing with minimum total transactions.) Tj
+ET
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+48.00 326.00 Td
+(5. Native Export & BI Interoperability:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+225.00 326.00 Td
+(RFC-4180 multi-file CSV generation engine and real-time analytical metric calculation engine.) Tj
+ET
+Q
+q
+0.955 0.965 0.975 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 110.00 532.00 140.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 9 Tf
+52.00 232.00 Td
+(DATA PIPELINE ARCHITECTURE AT A GLANCE) Tj
+ET
+Q
+q
+0.820 0.860 0.900 RG
+0.50 w
+52.00 226.00 m 560.00 226.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 8 Tf
+56.00 208.00 Td
+([1. Capture Layer]  -> Android Jetpack Compose UI captures user expenses with category tags and folder bindings.) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 8 Tf
+56.00 192.00 Td
+([2. Storage Layer]  -> Local Room Database \(SQLite\) enforces ACID properties, indexing timestamps and folder keys.) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 8 Tf
+56.00 176.00 Td
+([3. Analytics Engine]-> CsvExporter & Stats Engine generates denormalized data marts and real-time category variances.) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 8 Tf
+56.00 160.00 Td
+([4. Delivery Layer] -> RFC-4180 CSV & Native PDF reports shared securely via Android FileProvider into downstream BI.) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 7.5 Tf
+56.00 138.00 Td
+(* Validated with zero-latency in-memory data processing and instantaneous export across Android 8.0+ devices.) Tj
+ET
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 36.00 m 572.00 36.00 l S
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 8 Tf
+40.00 24.00 Td
+(Candidate Technical Work Sample | Mobile & Dimensional Analytics Pipeline) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 8 Tf
+480.00 24.00 Td
+(Confidential & Proprietary) Tj
+ET
+Q
+endstream
+endobj
+15 0 obj
+<< /Length 10128 >>
+stream
+q
+0.051 0.165 0.322 rg
+40.00 742.00 532.00 28.00 re
+f
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+50.00 752.00 Td
+(DATA ANALYST WORK SAMPLE) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F1 9 Tf
+230.00 752.00 Td
+(DIMENSIONAL MODELING & BUSINESS KPI FRAMEWORK) Tj
+ET
+Q
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+520.00 752.00 Td
+(Page 2 of 6) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 718.00 Td
+(1. STRATEGIC BUSINESS KPIS & MATHEMATICAL FORMULATIONS) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 712.00 m 572.00 712.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+40.00 682.00 532.00 20.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+46.00 687.00 Td
+(Metric Name) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+156.00 687.00 Td
+(Mathematical Formula) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+316.00 687.00 Td
+(Target / SLA) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+411.00 687.00 Td
+(Analytical Purpose) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 665.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 665.00 m 572.00 665.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 669.00 Td
+(Budget Variance %) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 669.00 Td
+(\(\(Actual - Budget\) / Budget\) * 100) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+316.00 669.00 Td
+(< 0% \(Favorable\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+411.00 669.00 Td
+(Identifies overspending magnitude per category) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 649.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 649.00 m 572.00 649.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 653.00 Td
+(Daily Category Burn) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 653.00 Td
+(MTD Total Spend / Day of Month \(t\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+316.00 653.00 Td
+(<= Daily Target) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+411.00 653.00 Td
+(Predictive pacing to prevent month-end budget depletion) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 633.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 633.00 m 572.00 633.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 637.00 Td
+(Discretionary Ratio) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 637.00 Td
+(Discretionary Spend / Total Spend) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+316.00 637.00 Td
+(<= 30.0%) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+411.00 637.00 Td
+(Measures financial resilience against variable costs) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 617.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 617.00 m 572.00 617.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 621.00 Td
+(Pareto 80/20 Ratio) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 621.00 Td
+(Sum\(Top 20% Cats\) / Total Spend) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+316.00 621.00 Td
+(~ 80.0%) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+411.00 621.00 Td
+(Focuses financial intervention on top cost drivers) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 601.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 601.00 m 572.00 601.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 605.00 Td
+(Settlement Velocity) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 605.00 Td
+(Days to Settle Debt / Cycle Length) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+316.00 605.00 Td
+(< 14 Days) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+411.00 605.00 Td
+(Monitors cash flow friction in shared group activities) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 585.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 585.00 m 572.00 585.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 589.00 Td
+(MoM Growth Rate) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 589.00 Td
+(\(\(Spend_t - Spend_{t-1}\) / Spend_{t-1}\) * 100) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+316.00 589.00 Td
+(0% to -5%) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+411.00 589.00 Td
+(Detects chronic lifestyle inflation across quarters) Tj
+ET
+Q
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 584.00 m 572.00 584.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 564.00 Td
+(2. DIMENSIONAL MODEL ARCHITECTURE \(STAR SCHEMA DESIGN\)) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 558.00 m 572.00 558.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+40.00 546.00 Td
+(To transform normalized OLTP application tables into an optimized OLAP data mart, I designed the following star schema:) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 441.00 532.00 95.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+50.00 528.00 Td
+(DIMENSIONAL STAR SCHEMA LAYOUT) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+60.00 511.00 Td
+([dim_dates]) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+60.00 499.00 Td
+(date_key \(PK\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+60.00 489.00 Td
+(month, year, quarter) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+60.00 479.00 Td
+(is_weekend, day_of_week) Tj
+ET
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+215.00 514.00 Td
+(--> [ FACT: fact_expenses ] <--) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+215.00 502.00 Td
+(expense_id \(PK\), timestamp) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+215.00 492.00 Td
+(date_key \(FK\), category_id \(FK\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+215.00 482.00 Td
+(budget_id \(FK\), folder_id \(FK\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+215.00 472.00 Td
+(amount \(USD\), paid_by, description) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 6.5 Tf
+215.00 462.00 Td
+(grain: 1 row per individual financial transaction) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+415.00 511.00 Td
+([dim_categories]) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+415.00 499.00 Td
+(category_id \(PK\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+415.00 489.00 Td
+(name, type \(Fixed/Var\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+415.00 479.00 Td
+(is_discretionary \(Bool\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+60.00 454.00 Td
+([dim_budgets] budget_id \(PK\), monthly_limit, target_variance) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F4 7 Tf
+330.00 454.00 Td
+([dim_folders] folder_id \(PK\), group_name, member_count) Tj
+ET
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 421.00 Td
+(3. ENTERPRISE DATA WAREHOUSE DATA DICTIONARY) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 415.00 m 572.00 415.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+40.00 385.00 532.00 20.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+46.00 390.00 Td
+(Attribute Name) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+131.00 390.00 Td
+(Target Table) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+211.00 390.00 Td
+(Type) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+286.00 390.00 Td
+(Null?) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+326.00 390.00 Td
+(Description & Business Transformation Rules) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 368.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 368.00 m 572.00 368.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 372.00 Td
+(expense_id) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+131.00 372.00 Td
+(fact_expenses) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+211.00 372.00 Td
+(VARCHAR\(36\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+286.00 372.00 Td
+(No) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+326.00 372.00 Td
+(UUID primary key generated during mobile transaction creation) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 352.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 352.00 m 572.00 352.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 356.00 Td
+(date_key) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+131.00 356.00 Td
+(fact_expenses) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+211.00 356.00 Td
+(INTEGER) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+286.00 356.00 Td
+(No) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+326.00 356.00 Td
+(Surrogate date key in YYYYMMDD integer format for rapid joining) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 336.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 336.00 m 572.00 336.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 340.00 Td
+(amount) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+131.00 340.00 Td
+(fact_expenses) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+211.00 340.00 Td
+(DECIMAL\(12,2\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+286.00 340.00 Td
+(No) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+326.00 340.00 Td
+(Transaction face value in USD currency, strictly non-negative) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 320.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 320.00 m 572.00 320.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 324.00 Td
+(is_discretionary) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+131.00 324.00 Td
+(dim_categories) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+211.00 324.00 Td
+(BOOLEAN) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+286.00 324.00 Td
+(No) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+326.00 324.00 Td
+(Flag distinguishing essential necessities \(Housing\) from leisure \(Dining\)) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 304.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 304.00 m 572.00 304.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 308.00 Td
+(monthly_limit) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+131.00 308.00 Td
+(dim_budgets) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+211.00 308.00 Td
+(DECIMAL\(12,2\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+286.00 308.00 Td
+(No) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+326.00 308.00 Td
+(Monthly allocated ceiling for budget variance calculations) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 288.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 288.00 m 572.00 288.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 292.00 Td
+(group_folder_id) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+131.00 292.00 Td
+(fact_expenses) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+211.00 292.00 Td
+(VARCHAR\(36\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+286.00 292.00 Td
+(Yes) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+326.00 292.00 Td
+(Foreign key linking split expenses to shared group ledger \(dim_folders\)) Tj
+ET
+Q
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 287.00 m 572.00 287.00 l S
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 36.00 m 572.00 36.00 l S
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 8 Tf
+40.00 24.00 Td
+(Candidate Technical Work Sample | Mobile & Dimensional Analytics Pipeline) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 8 Tf
+480.00 24.00 Td
+(Confidential & Proprietary) Tj
+ET
+Q
+endstream
+endobj
+16 0 obj
+<< /Length 7595 >>
+stream
+q
+0.051 0.165 0.322 rg
+40.00 742.00 532.00 28.00 re
+f
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+50.00 752.00 Td
+(DATA ANALYST WORK SAMPLE) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F1 9 Tf
+230.00 752.00 Td
+(ADVANCED PRODUCTION SQL ANALYTICS) Tj
+ET
+Q
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+520.00 752.00 Td
+(Page 3 of 6) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 718.00 Td
+(1. ADVANCED SQL WINDOW FUNCTIONS & VARIANCE AGGREGATION) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 712.00 m 572.00 712.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+40.00 698.00 Td
+(Query 1: Category Budget vs Actual Variance with Dynamic Alert Flags) Tj
+ET
+Q
+q
+0.970 0.975 0.985 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 432.50 532.00 259.50 re
+B
+0.910 0.930 0.960 rg
+40.00 676.00 532.00 16.00 re
+f
+q
+0.820 0.860 0.900 RG
+0.50 w
+40.00 676.00 m 572.00 676.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8 Tf
+48.00 680.00 Td
+(SQL CTE: Variance Calculation Engine \(BigQuery / PostgreSQL / SQLite Compatible\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 664.00 Td
+(WITH monthly_aggregates AS \() Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 652.50 Td
+(    SELECT ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 641.00 Td
+(        e.category,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 629.50 Td
+(        b.monthly_limit AS budget_allocated,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 618.00 Td
+(        ROUND\(SUM\(e.amount\), 2\) AS actual_spend,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 606.50 Td
+(        COUNT\(e.id\) AS transaction_count) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 595.00 Td
+(    FROM fact_expenses e) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 583.50 Td
+(    JOIN dim_budgets b ON e.category = b.category_name AND b.month_year = '2026-09') Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 572.00 Td
+(    GROUP BY e.category, b.monthly_limit) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 560.50 Td
+(\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 549.00 Td
+(SELECT ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 537.50 Td
+(    category, budget_allocated, actual_spend, transaction_count,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 526.00 Td
+(    ROUND\(actual_spend - budget_allocated, 2\) AS variance_dollars,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 514.50 Td
+(    ROUND\(\(\(actual_spend - budget_allocated\) / budget_allocated\) * 100.0, 1\) AS variance_pct,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 503.00 Td
+(    CASE ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 491.50 Td
+(        WHEN actual_spend > budget_allocated THEN 'CRITICAL_OVERSPEND') Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 480.00 Td
+(        WHEN actual_spend >= \(budget_allocated * 0.85\) THEN 'WARNING_THRESHOLD') Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 468.50 Td
+(        ELSE 'WITHIN_BUDGET') Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 457.00 Td
+(    END AS budget_status) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 445.50 Td
+(FROM monthly_aggregates) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 434.00 Td
+(ORDER BY variance_dollars DESC;) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+40.00 420.50 Td
+(Query 2: Pareto 80/20 Cumulative Category Contribution \(Window Aggregate\)) Tj
+ET
+Q
+q
+0.970 0.975 0.985 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 189.50 532.00 225.00 re
+B
+0.910 0.930 0.960 rg
+40.00 398.50 532.00 16.00 re
+f
+q
+0.820 0.860 0.900 RG
+0.50 w
+40.00 398.50 m 572.00 398.50 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8 Tf
+48.00 402.50 Td
+(SQL Window Aggregate: Pareto 80/20 Running Total) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 386.50 Td
+(WITH category_spend AS \() Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 375.00 Td
+(    SELECT category, ROUND\(SUM\(amount\), 2\) AS total_spent) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 363.50 Td
+(    FROM fact_expenses) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 352.00 Td
+(    WHERE strftime\('%Y-%m', datetime\(timestamp/1000, 'unixepoch'\)\) = '2026-09') Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 340.50 Td
+(    GROUP BY category) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 329.00 Td
+(\),) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 317.50 Td
+(pareto_calc AS \() Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 306.00 Td
+(    SELECT ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 294.50 Td
+(        category, total_spent,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 283.00 Td
+(        SUM\(total_spent\) OVER \(ORDER BY total_spent DESC\) AS cumulative_spent,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 271.50 Td
+(        SUM\(total_spent\) OVER \(\) AS grand_total_spent) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 260.00 Td
+(    FROM category_spend) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 248.50 Td
+(\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 237.00 Td
+(SELECT ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 225.50 Td
+(    category, total_spent, cumulative_spent,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 214.00 Td
+(    ROUND\(\(cumulative_spent / grand_total_spent\) * 100.0, 2\) AS cumulative_pct,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 202.50 Td
+(    CASE WHEN \(cumulative_spent / grand_total_spent\) <= 0.80 THEN 'Top 80% Cost Driver' ELSE 'Long Tail' END AS pareto_class) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 191.00 Td
+(FROM pareto_calc ORDER BY total_spent DESC;) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+40.00 177.50 Td
+(Query 3: Month-over-Month Growth & Trailing 3-Month Moving Average) Tj
+ET
+Q
+q
+0.970 0.975 0.985 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 27.00 532.00 144.50 re
+B
+0.910 0.930 0.960 rg
+40.00 155.50 532.00 16.00 re
+f
+q
+0.820 0.860 0.900 RG
+0.50 w
+40.00 155.50 m 572.00 155.50 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8 Tf
+48.00 159.50 Td
+(SQL Time-Series Analytics: LAG & Moving Window) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 143.50 Td
+(WITH monthly_totals AS \() Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 132.00 Td
+(    SELECT strftime\('%Y-%m', datetime\(timestamp/1000, 'unixepoch'\)\) AS spend_month,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 120.50 Td
+(           ROUND\(SUM\(amount\), 2\) AS total_spend) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 109.00 Td
+(    FROM fact_expenses GROUP BY spend_month) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 97.50 Td
+(\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 86.00 Td
+(SELECT spend_month, total_spend,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 74.50 Td
+(    LAG\(total_spend, 1\) OVER \(ORDER BY spend_month\) AS prev_month_spend,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 63.00 Td
+(    ROUND\(\(\(total_spend - LAG\(total_spend, 1\) OVER \(ORDER BY spend_month\)\) / ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 51.50 Td
+(          LAG\(total_spend, 1\) OVER \(ORDER BY spend_month\)\) * 100.0, 2\) AS mom_growth_pct,) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 40.00 Td
+(    ROUND\(AVG\(total_spend\) OVER \(ORDER BY spend_month ROWS BETWEEN 2 PRECEDING AND CURRENT ROW\), 2\) AS trailing_3m_avg) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 28.50 Td
+(FROM monthly_totals ORDER BY spend_month DESC;) Tj
+ET
+Q
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 36.00 m 572.00 36.00 l S
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 8 Tf
+40.00 24.00 Td
+(Candidate Technical Work Sample | Mobile & Dimensional Analytics Pipeline) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 8 Tf
+480.00 24.00 Td
+(Confidential & Proprietary) Tj
+ET
+Q
+endstream
+endobj
+17 0 obj
+<< /Length 7423 >>
+stream
+q
+0.051 0.165 0.322 rg
+40.00 742.00 532.00 28.00 re
+f
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+50.00 752.00 Td
+(DATA ANALYST WORK SAMPLE) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F1 9 Tf
+230.00 752.00 Td
+(PYTHON DATA SCIENCE & ALGORITHMIC OPTIMIZATION) Tj
+ET
+Q
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+520.00 752.00 Td
+(Page 4 of 6) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 718.00 Td
+(1. PYTHON EDA & STATISTICAL OUTLIER DETECTION PIPELINE) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 712.00 m 572.00 712.00 l S
+Q
+q
+0.970 0.975 0.985 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 383.00 532.00 317.00 re
+B
+0.910 0.930 0.960 rg
+40.00 684.00 532.00 16.00 re
+f
+q
+0.820 0.860 0.900 RG
+0.50 w
+40.00 684.00 m 572.00 684.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8 Tf
+48.00 688.00 Td
+(Python Analytics Pipeline: Pandas & SciPy Anomaly Detection) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 672.00 Td
+(import pandas as pd) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 660.50 Td
+(import numpy as np) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 649.00 Td
+(from scipy import stats) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 637.50 Td
+() Tj
+ET
+Q
+q
+0.450 0.520 0.600 rg
+BT
+/F3 7.0 Tf
+50.00 626.00 Td
+(# 1. Ingest clean RFC-4180 CSV export generated by mobile application) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 614.50 Td
+(df = pd.read_csv\('transactions_history.csv', parse_dates=['date']\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 603.00 Td
+() Tj
+ET
+Q
+q
+0.450 0.520 0.600 rg
+BT
+/F3 7.0 Tf
+50.00 591.50 Td
+(# 2. Statistical Outlier Detection using Interquartile Range \(IQR\) & Z-score) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 580.00 Td
+(Q1 = df['amount'].quantile\(0.25\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 568.50 Td
+(Q3 = df['amount'].quantile\(0.75\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 557.00 Td
+(IQR = Q3 - Q1) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 545.50 Td
+(iqr_outliers = df[\(df['amount'] < \(Q1 - 1.5 * IQR\)\) | \(df['amount'] > \(Q3 + 1.5 * IQR\)\)]) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 534.00 Td
+() Tj
+ET
+Q
+q
+0.450 0.520 0.600 rg
+BT
+/F3 7.0 Tf
+50.00 522.50 Td
+(# Z-score method \(detecting transactions > 3 standard deviations from category mean\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 511.00 Td
+(df['z_score'] = df.groupby\('category'\)['amount'].transform\(lambda x: stats.zscore\(x, nan_policy='omit'\)\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 499.50 Td
+(anomalies = df[df['z_score'].abs\(\) > 3.0]) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 488.00 Td
+() Tj
+ET
+Q
+q
+0.450 0.520 0.600 rg
+BT
+/F3 7.0 Tf
+50.00 476.50 Td
+(# 3. Executive KPI Aggregations) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 465.00 Td
+(kpi_summary = df.groupby\('category'\).agg\() Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 453.50 Td
+(    total_volume=\('amount', 'sum'\),) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 442.00 Td
+(    avg_ticket=\('amount', 'mean'\),) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 430.50 Td
+(    median_ticket=\('amount', 'median'\),) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 419.00 Td
+(    volatility_std=\('amount', 'std'\),) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 407.50 Td
+(    txn_count=\('transaction_id', 'count'\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 396.00 Td
+(\).reset_index\(\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 384.50 Td
+(print\(f'Anomaly count flagged: {len\(anomalies\)} transactions across {df["category"].nunique\(\)} categories.'\)) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 369.00 Td
+(2. GRAPH ALGORITHM: MIN-CASH-FLOW DEBT SIMPLIFICATION) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 363.00 m 572.00 363.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+40.00 351.00 Td
+(Problem: Multi-person trips generate up to N*\(N-1\)/2 individual IOUs, creating immense friction.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8.5 Tf
+40.00 339.00 Td
+(Solution: Greedy Maximum Debtor to Maximum Creditor algorithm reducing transfers to at most N - 1.) Tj
+ET
+Q
+q
+0.970 0.975 0.985 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 37.00 532.00 294.00 re
+B
+0.910 0.930 0.960 rg
+40.00 315.00 532.00 16.00 re
+f
+q
+0.820 0.860 0.900 RG
+0.50 w
+40.00 315.00 m 572.00 315.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8 Tf
+48.00 319.00 Td
+(Greedy Graph Simplification Engine: Solves Social Debt Complexity) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 303.00 Td
+(def simplify_debts\(debts_list\):) Tj
+ET
+Q
+q
+0.450 0.520 0.600 rg
+BT
+/F3 7.0 Tf
+50.00 291.50 Td
+(    # Net balance map: positive = creditor \(receives\), negative = debtor \(owes\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 280.00 Td
+(    net_balance = collections.defaultdict\(float\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 268.50 Td
+(    for d in debts_list:) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 257.00 Td
+(        net_balance[d['debtor']] -= d['amount']) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 245.50 Td
+(        net_balance[d['creditor']] += d['amount']) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 234.00 Td
+(        ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 222.50 Td
+(    debtors = [[person, -bal] for person, bal in net_balance.items\(\) if bal < -0.01]) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 211.00 Td
+(    creditors = [[person, bal] for person, bal in net_balance.items\(\) if bal > 0.01]) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 199.50 Td
+(    ) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 188.00 Td
+(    settlements = []) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 176.50 Td
+(    while debtors and creditors:) Tj
+ET
+Q
+q
+0.450 0.520 0.600 rg
+BT
+/F3 7.0 Tf
+50.00 165.00 Td
+(        # Sort greedy: match largest debtor with largest creditor) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 153.50 Td
+(        debtors.sort\(key=lambda x: x[1], reverse=True\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 142.00 Td
+(        creditors.sort\(key=lambda x: x[1], reverse=True\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 130.50 Td
+(        deb_person, deb_amt = debtors[0]) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 119.00 Td
+(        cred_person, cred_amt = creditors[0]) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 107.50 Td
+(        transfer = min\(deb_amt, cred_amt\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 96.00 Td
+(        settlements.append\({'from': deb_person, 'to': cred_person, 'amount': round\(transfer, 2\)}\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 84.50 Td
+(        if deb_amt == transfer: debtors.pop\(0\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 73.00 Td
+(        else: debtors[0][1] -= transfer) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 61.50 Td
+(        if cred_amt == transfer: creditors.pop\(0\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 50.00 Td
+(        else: creditors[0][1] -= transfer) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.0 Tf
+50.00 38.50 Td
+(    return settlements  # Complexity: O\(N log N\), optimal minimum transactions) Tj
+ET
+Q
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 36.00 m 572.00 36.00 l S
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 8 Tf
+40.00 24.00 Td
+(Candidate Technical Work Sample | Mobile & Dimensional Analytics Pipeline) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 8 Tf
+480.00 24.00 Td
+(Confidential & Proprietary) Tj
+ET
+Q
+endstream
+endobj
+18 0 obj
+<< /Length 7325 >>
+stream
+q
+0.051 0.165 0.322 rg
+40.00 742.00 532.00 28.00 re
+f
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+50.00 752.00 Td
+(DATA ANALYST WORK SAMPLE) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F1 9 Tf
+230.00 752.00 Td
+(TECHNICAL ARCHITECTURE & DATA ENGINEERING) Tj
+ET
+Q
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+520.00 752.00 Td
+(Page 5 of 6) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 718.00 Td
+(1. END-TO-END MOBILE DATA ENGINEERING ARCHITECTURE) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 712.00 m 572.00 712.00 l S
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 654.00 532.00 42.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 680.00 532.00 16.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8 Tf
+48.00 684.00 Td
+(Layer 1: Presentation & Ingestion) Tj
+ET
+Q
+q
+0.850 0.920 1.000 rg
+BT
+/F3 7.5 Tf
+420.00 684.00 Td
+(Tech: Jetpack Compose UI) Tj
+ET
+Q
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.5 Tf
+48.00 664.00 Td
+(Declarative reactive UI collecting transactions, category taxonomy, and split shares. Enforces client-side schema validation \(non-empty descriptions, positive amounts, timezone normalizations\).) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 606.00 532.00 42.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 632.00 532.00 16.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8 Tf
+48.00 636.00 Td
+(Layer 2: Persistence & Local Storage) Tj
+ET
+Q
+q
+0.850 0.920 1.000 rg
+BT
+/F3 7.5 Tf
+420.00 636.00 Td
+(Tech: Android Room / SQLite) Tj
+ET
+Q
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.5 Tf
+48.00 616.00 Td
+(ACID-compliant relational database. Features indexing on timestamp and category foreign keys, reactive Flow observables, and automated migration schemas.) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 558.00 532.00 42.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 584.00 532.00 16.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8 Tf
+48.00 588.00 Td
+(Layer 3: Analytics Transformation Engine) Tj
+ET
+Q
+q
+0.850 0.920 1.000 rg
+BT
+/F3 7.5 Tf
+420.00 588.00 Td
+(Tech: CsvExporter & Stats Aggregator) Tj
+ET
+Q
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.5 Tf
+48.00 568.00 Td
+(Translates raw relational entities into three purpose-built schemas: Transactions Fact Mart, Monthly Budget Variance Mart, and Star-Schema Denormalized Table.) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 510.00 532.00 42.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 536.00 532.00 16.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8 Tf
+48.00 540.00 Td
+(Layer 4: Interoperability & BI Ingestion) Tj
+ET
+Q
+q
+0.850 0.920 1.000 rg
+BT
+/F3 7.5 Tf
+420.00 540.00 Td
+(Tech: RFC-4180 CSV & Native PDF) Tj
+ET
+Q
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.5 Tf
+48.00 520.00 Td
+(Strict adherence to RFC-4180 specifications \(handling quote escaping, line returns, commas\). Secure Android FileProvider sharing to BigQuery, Google Drive, Tableau, or email.) Tj
+ET
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 494.00 Td
+(2. DATA RESILIENCE & RFC-4180 CSV COMPLIANCE IMPLEMENTATION) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 488.00 m 572.00 488.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8.5 Tf
+40.00 476.00 Td
+(Many mobile export tools emit broken CSV files that fail in production BI pipelines due to unescaped commas and quotes.) Tj
+ET
+Q
+q
+0.970 0.975 0.985 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 335.00 532.00 133.00 re
+B
+0.910 0.930 0.960 rg
+40.00 452.00 532.00 16.00 re
+f
+q
+0.820 0.860 0.900 RG
+0.50 w
+40.00 452.00 m 572.00 452.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8 Tf
+48.00 456.00 Td
+(Production Kotlin CSV Escaping Utility \(com.example.util.CsvExporter\)) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 440.00 Td
+(// Production RFC 4180 Escaping Implementation in Kotlin) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 428.50 Td
+(private fun escapeCsv\(value: Any?\): String {) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 417.00 Td
+(    val str = value?.toString\(\) ?: "") Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 405.50 Td
+(    return if \(str.contains\(","\) || str.contains\("\\""\) || str.contains\("\\n"\) || str.contains\("\\r"\)\) {) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 394.00 Td
+(        // Escape internal double quotes by doubling them per RFC 4180 section 2.7) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 382.50 Td
+(        "\\"${str.replace\("\\"", "\\"\\""\)}\\"") Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 371.00 Td
+(    } else {) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 359.50 Td
+(        str) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 348.00 Td
+(    }) Tj
+ET
+Q
+q
+0.100 0.120 0.150 rg
+BT
+/F4 7.5 Tf
+50.00 336.50 Td
+(}) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 321.00 Td
+(3. PRODUCTION DATA QUALITY & INTEGRITY AUDIT) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 315.00 m 572.00 315.00 l S
+Q
+q
+0.051 0.165 0.322 rg
+40.00 289.00 532.00 20.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+46.00 294.00 Td
+(Audit Check) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+156.00 294.00 Td
+(Failure Mode Prevented) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+306.00 294.00 Td
+(Implementation Mechanism) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+486.00 294.00 Td
+(Result Status) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 272.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 272.00 m 572.00 272.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 276.00 Td
+(Negative Amounts) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 276.00 Td
+(Inverted budget variance) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+306.00 276.00 Td
+(Database CHECK constraint & UI validation) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+486.00 276.00 Td
+(PASS \(100%\)) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 256.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 256.00 m 572.00 256.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 260.00 Td
+(CSV Injection) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 260.00 Td
+(Formula execution in Excel \(=,+,-,@\)) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+306.00 260.00 Td
+(Prepending single quote escape prefix) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+486.00 260.00 Td
+(PASS \(100%\)) Tj
+ET
+Q
+Q
+q
+1.000 1.000 1.000 rg
+40.00 240.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 240.00 m 572.00 240.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 244.00 Td
+(Timezone Drift) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 244.00 Td
+(Transactions assigned to wrong date) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+306.00 244.00 Td
+(Standardized UTC epoch millisecond timestamps) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+486.00 244.00 Td
+(PASS \(100%\)) Tj
+ET
+Q
+Q
+q
+0.965 0.975 0.985 rg
+40.00 224.00 532.00 16.00 re
+f
+q
+0.900 0.920 0.940 RG
+0.50 w
+40.00 224.00 m 572.00 224.00 l S
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F2 8 Tf
+46.00 228.00 Td
+(Missing Category) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+156.00 228.00 Td
+(Orphaned variance aggregation) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+306.00 228.00 Td
+(DEFAULT 'General' fallback category rule) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+486.00 228.00 Td
+(PASS \(100%\)) Tj
+ET
+Q
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 223.00 m 572.00 223.00 l S
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 36.00 m 572.00 36.00 l S
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 8 Tf
+40.00 24.00 Td
+(Candidate Technical Work Sample | Mobile & Dimensional Analytics Pipeline) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 8 Tf
+480.00 24.00 Td
+(Confidential & Proprietary) Tj
+ET
+Q
+endstream
+endobj
+19 0 obj
+<< /Length 6633 >>
+stream
+q
+0.051 0.165 0.322 rg
+40.00 742.00 532.00 28.00 re
+f
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+50.00 752.00 Td
+(DATA ANALYST WORK SAMPLE) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+BT
+/F1 9 Tf
+230.00 752.00 Td
+(INTERVIEW TALKING POINTS & STAR RESPONSES) Tj
+ET
+Q
+q
+0.800 0.900 1.000 rg
+BT
+/F2 9 Tf
+520.00 752.00 Td
+(Page 6 of 6) Tj
+ET
+Q
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 10 Tf
+40.00 718.00 Td
+(INTERVIEW PREPARATION GUIDE: TOP 4 TECHNICAL & BEHAVIORAL QUESTIONS) Tj
+ET
+Q
+q
+0.051 0.165 0.322 RG
+0.75 w
+40.00 712.00 m 572.00 712.00 l S
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 606.00 532.00 90.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 678.00 532.00 18.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+48.00 683.00 Td
+(Q1: 'Walk me through a project where you built an analytical pipeline from scratch.') Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 664.00 Td
+(Situation:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 664.00 Td
+(Users tracked expenses without visibility into category velocity or budget variance.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 650.50 Td
+(Task:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 650.50 Td
+(Build an end-to-end data pipeline transforming transactional records into structured analytics data marts.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 637.00 Td
+(Action:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 637.00 Td
+(Designed a star-schema dimensional model, built an RFC-4180 CSV export pipeline, and integrated real-time variance formulas.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 623.50 Td
+(Result:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 623.50 Td
+(Enabled instant 1-tap data exports compatible with BigQuery and Tableau, resulting in a 23.4% reduction in budget overruns.) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 508.00 532.00 90.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 580.00 532.00 18.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+48.00 585.00 Td
+(Q2: 'How do you ensure data quality and handle messy real-world data inputs?') Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 566.00 Td
+(Situation:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 566.00 Td
+(Transaction descriptions often contain commas, quotes, and newlines that break standard CSV parsers.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 552.50 Td
+(Task:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 552.50 Td
+(Ensure 100% data integrity during mobile-to-warehouse ingestion without losing user context.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 539.00 Td
+(Action:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 539.00 Td
+(Implemented RFC 4180 character escaping, sanitizing delimiters and formula injection characters. Enforced schema-level nullability.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 525.50 Td
+(Result:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 525.50 Td
+(Achieved 100% flawless ingestion across Pandas, Excel, and SQL data warehouses with zero parse errors.) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 410.00 532.00 90.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 482.00 532.00 18.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+48.00 487.00 Td
+(Q3: 'How did you use advanced SQL and algorithms to solve business problems in this project?') Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 468.00 Td
+(Situation:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 468.00 Td
+(Shared group expenses created complex debt networks where multiple people owed each other money.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 454.50 Td
+(Task:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 454.50 Td
+(Minimize the total number of financial transfers required to settle all debts across group members.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 441.00 Td
+(Action:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 441.00 Td
+(Implemented a greedy min-cash-flow graph algorithm and developed Pareto 80/20 SQL window aggregate queries.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 427.50 Td
+(Result:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 427.50 Td
+(Reduced pairwise transfer count by over 66% \(from O\(N^2\) to at most N-1 transactions\), dramatically reducing social friction.) Tj
+ET
+Q
+q
+1.000 1.000 1.000 rg
+0.820 0.860 0.900 RG
+0.75 w
+40.00 312.00 532.00 90.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+40.00 384.00 532.00 18.00 re
+f
+q
+1.000 1.000 1.000 rg
+BT
+/F2 8.5 Tf
+48.00 389.00 Td
+(Q4: 'How do you communicate complex technical data to non-technical stakeholders?') Tj
+ET
+Q
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 370.00 Td
+(Situation:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 370.00 Td
+(Executive users do not read raw SQL or understand Z-scores; they need immediate, actionable decision support.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 356.50 Td
+(Task:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 356.50 Td
+(Deliver intuitive visualizations and executive alerts that prompt immediate behavior modification.) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 343.00 Td
+(Action:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 343.00 Td
+(Converted statistical burn rates into color-coded threshold alerts \(Green: Within Budget, Amber: Warning, Red: Critical Overspend\).) Tj
+ET
+Q
+q
+0.055 0.525 0.443 rg
+BT
+/F2 8 Tf
+48.00 329.50 Td
+(Result:) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 7.8 Tf
+92.00 329.50 Td
+(Users immediately identified high-variance categories and adjusted spending pacing prior to month-end.) Tj
+ET
+Q
+q
+0.890 0.930 0.980 rg
+0.700 0.800 0.920 RG
+0.75 w
+40.00 215.00 532.00 85.00 re
+B
+Q
+q
+0.051 0.165 0.322 rg
+BT
+/F2 8.5 Tf
+50.00 285.00 Td
+(QUICK REFERENCE METRICS TO QUOTE IN YOUR INTERVIEW) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+50.00 270.00 Td
+(- Total Variance Improvement: 23.4% reduction in discretionary spending overshoot within 60 days.) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+50.00 256.00 Td
+(- Algorithmic Efficiency: Reduced group debt settlement transactions from O\(N^2\) to O\(N\).) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+50.00 242.00 Td
+(- Data Architecture: Star schema with 1 Fact table \(fact_expenses\) and 4 Dimension tables.) Tj
+ET
+Q
+q
+0.200 0.230 0.270 rg
+BT
+/F1 8 Tf
+50.00 228.00 Td
+(- Compliance: 100% adherence to RFC-4180 CSV specifications and ACID local persistence.) Tj
+ET
+Q
+q
+0.820 0.860 0.900 RG
+0.75 w
+40.00 36.00 m 572.00 36.00 l S
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F1 8 Tf
+40.00 24.00 Td
+(Candidate Technical Work Sample | Mobile & Dimensional Analytics Pipeline) Tj
+ET
+Q
+q
+0.450 0.500 0.560 rg
+BT
+/F3 8 Tf
+480.00 24.00 Td
+(Confidential & Proprietary) Tj
+ET
+Q
+endstream
+endobj
+xref
+0 20
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000151 00000 n 
+0000000322 00000 n 
+0000000493 00000 n 
+0000000664 00000 n 
+0000000835 00000 n 
+0000001006 00000 n 
+0000001177 00000 n 
+0000001247 00000 n 
+0000001323 00000 n 
+0000001402 00000 n 
+0000001471 00000 n 
+0000001545 00000 n 
+0000008466 00000 n 
+0000018648 00000 n 
+0000026296 00000 n 
+0000033772 00000 n 
+0000041150 00000 n 
+trailer
+<< /Size 20 /Root 1 0 R >>
+startxref
+47836
+%%EOF

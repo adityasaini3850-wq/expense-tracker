@@ -1,6 +1,6 @@
 {
   "name": "Expense Tracker",
-  "description": "Multi-user expense tracker with group folders, bill splitting, debt logs, and spending reports.",
+  "description": "Smart Expense Tracker with category-wise monthly budgets, group splitwise folders, debt tracking, and OTP authentication.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
